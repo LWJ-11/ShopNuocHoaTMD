@@ -62,5 +62,18 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
             }
             return View(model);
         }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var item = _dbConnect.Menu.Find(id);
+            if(item != null)
+            {
+                _dbConnect.Menu.Remove(item);
+                _dbConnect.SaveChanges();
+                return Json(new { success = true });
+               
+            }
+            return Json(new { success = false });
+        }
     }
 }

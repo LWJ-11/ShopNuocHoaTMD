@@ -109,3 +109,8 @@ F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\Sh
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.CreateedDatabase.resources
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.csproj.GenerateResource.cache
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.UpdateData.resources
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\CKFinder.dll
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\CKFinder.pdb
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\CKEditor.NET.dll
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.UpdateData1.resources
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.Updatedata2.resources

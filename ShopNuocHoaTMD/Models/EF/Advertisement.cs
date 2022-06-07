@@ -21,5 +21,6 @@ namespace ShopNuocHoaTMD.Models.EF
         public string Description { get; set; }
         [Required]
         public string Image { get; set; }
+        public string Alias { get; set; }
     }
 }
