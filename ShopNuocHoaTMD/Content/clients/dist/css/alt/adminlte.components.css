@@ -12026,11 +12026,10 @@ html.maximized-card {
 }
 
 .carousel-control-prev .carousel-control-custom-icon {
-  margin-left: -20px;
+  color: red;
 }
 
 .carousel-control-next .carousel-control-custom-icon {
-  margin-right: 20px;
 }
 
 .carousel-control-custom-icon > .fa,

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ShopNuocHoaTMD.Models.EF
 {
-    public abstract class CommonAbstract
+    public class CommonAbstract
     {
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }

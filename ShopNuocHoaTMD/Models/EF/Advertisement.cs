@@ -17,9 +17,10 @@ namespace ShopNuocHoaTMD.Models.EF
         [Required(ErrorMessage = "Tên không được để trống")]
         [StringLength(150, ErrorMessage = "Không được vượt quá 150 kí tự")]
         public string Title { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string Image { get; set; }
-
-
+        public string Alias { get; set; }
     }
 }
