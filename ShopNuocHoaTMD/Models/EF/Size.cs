@@ -16,7 +16,5 @@ namespace ShopNuocHoaTMD.Models.EF
 
         [Required(ErrorMessage = "Không được để giá trị thể tích")]
         public double SizeValue { get; set; }
-
-        public List<ProductPrice> ProductPrice { get; set; }
     }
 }

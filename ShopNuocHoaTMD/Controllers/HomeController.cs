@@ -1,5 +1,4 @@
-﻿using ShopNuocHoaTMD.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,12 +8,8 @@ namespace ShopNuocHoaTMD.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext _dbConnect = new ApplicationDbContext();
         public ActionResult Index()
         {
-            ViewData["Menu"] = _dbConnect.Menu;
-            ViewData["Advertisement"] = _dbConnect.Advertisements;
-            ViewData["Brand"] = _dbConnect.Brand;
             return View();
         }
 
