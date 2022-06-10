@@ -117,3 +117,9 @@ F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\Sh
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.UpdateDataabse3.resources
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.UpdateDatabase4.resources
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.UpdateDatabase5.resources
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\PagedList.dll
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\PagedList.Mvc.dll
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\PagedList.xml
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\PagedList.Mvc.xml
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.AddProductImage.resources
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.AllowHtml.resources

@@ -1,4 +1,5 @@
-﻿using ShopNuocHoaTMD.Models;
+﻿using PagedList;
+using ShopNuocHoaTMD.Models;
 using ShopNuocHoaTMD.Models.EF;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,22 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
     {
         private ApplicationDbContext _dbConnect = new ApplicationDbContext();
         // GET: Admin/Brand
-        public ActionResult Index()
+        public ActionResult Index(string Searchtext, int? page)
         {
-            var items = _dbConnect.Brand;
+            var pageSize = 6;
+            if(page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<Brand> items = _dbConnect.Brand.OrderByDescending(x => x.Brand_Id);
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Name.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
             return View(items);
         }
         public ActionResult Add()

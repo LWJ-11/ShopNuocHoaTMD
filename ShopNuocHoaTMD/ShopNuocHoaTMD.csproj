@@ -55,6 +55,12 @@
       <HintPath>..\..\..\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -218,6 +224,14 @@
     <Compile Include="Migrations\202206080741052_UpdateDatabase5.cs" />
     <Compile Include="Migrations\202206080741052_UpdateDatabase5.designer.cs">
       <DependentUpon>202206080741052_UpdateDatabase5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206100517110_AddProductImage.cs" />
+    <Compile Include="Migrations\202206100517110_AddProductImage.designer.cs">
+      <DependentUpon>202206100517110_AddProductImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206100522375_AllowHtml.cs" />
+    <Compile Include="Migrations\202206100522375_AllowHtml.designer.cs">
+      <DependentUpon>202206100522375_AllowHtml.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -2836,6 +2850,7 @@
     <Content Include="Content\clients\styles\responsive.css" />
     <Content Include="Content\clients\styles\single_responsive.css" />
     <Content Include="Content\clients\styles\single_styles.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2983,6 +2998,7 @@
     <Content Include="Areas\Admin\Views\Size\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Size\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Add.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3069,6 +3085,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206080741052_UpdateDatabase5.resx">
       <DependentUpon>202206080741052_UpdateDatabase5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206100517110_AddProductImage.resx">
+      <DependentUpon>202206100517110_AddProductImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206100522375_AllowHtml.resx">
+      <DependentUpon>202206100522375_AllowHtml.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

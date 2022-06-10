@@ -16,5 +16,7 @@ namespace ShopNuocHoaTMD.Models.EF
         public int Product_Id { get; set; }
         public string Image { get; set; }
         public bool isDefault { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

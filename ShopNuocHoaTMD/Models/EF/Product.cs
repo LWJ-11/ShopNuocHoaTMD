@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ShopNuocHoaTMD.Models.EF
 {
@@ -18,10 +19,9 @@ namespace ShopNuocHoaTMD.Models.EF
         [StringLength(150, ErrorMessage = "Không được vượt quá 150 kí tự")]
         public string Name { get; set; }
         public float Rate { get; set; }
+        [AllowHtml]
         [Required]
         public string Description { get; set; }
-        [Required]
-        public string Image { get; set; }
         [Required]
         public int Quanity { get; set; }
         public bool isHome { get; set; }
@@ -32,8 +32,10 @@ namespace ShopNuocHoaTMD.Models.EF
         public int Topic_Id { get; set; }
         public string Alias { get; set; }
 
+
         public List<ProductPrice> ProductPrice { get; set; }
         public List<OrderDetail> OrderDetail { get; set; }
+        public List<ProductImage> ProductImage { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
         public virtual Topic Topic { get; set; }
