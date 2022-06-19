@@ -20,6 +20,24 @@ namespace ShopNuocHoaTMD.Controllers
             }
             return View(items);
         }
+        public ActionResult IndexBrand(int? id)
+        {
+            var items = _dbConnect.Product.ToList();
+            if (id != null)
+            {
+                items = items.Where(x => x.Brand_Id == id).ToList();
+            }
+            return View(items);
+        }
+        public ActionResult IndexSearch(string Searchtext)
+        {
+            var items = _dbConnect.Product.ToList();
+            if (Searchtext != null)
+            {
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Name.Contains(Searchtext)).ToList();
+            }
+            return View(items);
+        }
         public ActionResult ProductTopic(string alias, int? id)
         {
             var items = _dbConnect.Product.ToList();
@@ -35,6 +53,21 @@ namespace ShopNuocHoaTMD.Controllers
             ViewBag.TopicId = id;
             return View(items);
         }
+        public ActionResult ProductBrand(string alias, int? id)
+        {
+            var items = _dbConnect.Product.ToList();
+            if (id > 0)
+            {
+                items = items.Where(x => x.Brand_Id == id).ToList();
+            }
+            var brand = _dbConnect.Brand.Find(id);
+            if (brand != null)
+            {
+                ViewBag.BrandTitle = brand.Name;
+            }
+            ViewBag.BrandId = id;
+            return View(items);
+        }
         public ActionResult Partial_ItemsByTopicID()
         {
             var items = _dbConnect.Product.Where(x => x.isHome).Take(12).ToList();
@@ -44,6 +77,11 @@ namespace ShopNuocHoaTMD.Controllers
         {
             var items = _dbConnect.Product.Where(x => x.isHot).Take(12).ToList();
             return PartialView(items);
+        }
+        public ActionResult Detail(int? id)
+        {
+            var item = _dbConnect.Product.Find(id);
+            return View(item);
         }
 
     }

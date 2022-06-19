@@ -50,5 +50,14 @@ namespace ShopNuocHoaTMD.Controllers
             var items = _dbConnect.Topic.ToList();
             return PartialView("_MenuLeft", items);
         }
+        public ActionResult MenuLeftBrand(int? id)
+        {
+            if (id != null)
+            {
+                ViewBag.BrandId = id;
+            }
+            var items = _dbConnect.Brand.ToList();
+            return PartialView("_MenuLeftBrand", items);
+        }
     }
 }

@@ -3063,6 +3063,11 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Menu\_MenuLeft.cshtml" />
     <Content Include="Views\Product\ProductTopic.cshtml" />
+    <Content Include="Views\Product\ProductBrand.cshtml" />
+    <Content Include="Views\Menu\_MenuLeftBrand.cshtml" />
+    <Content Include="Views\Product\IndexBrand.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Product\IndexSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

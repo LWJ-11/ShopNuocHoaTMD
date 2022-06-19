@@ -12,11 +12,8 @@ namespace ShopNuocHoaTMD.Controllers
         private ApplicationDbContext _dbConnect = new ApplicationDbContext();
         public ActionResult Index()
         {
-            ViewData["Menu"] = _dbConnect.Menu;
-            ViewData["Advertisement"] = _dbConnect.Advertisements;
-            ViewData["Brand"] = _dbConnect.Brand;
-            ViewData["Topic"] = _dbConnect.Topic;
-            return View();
+            var items = _dbConnect.Advertisements.ToList();
+            return View(items);
         }
 
         public ActionResult About()

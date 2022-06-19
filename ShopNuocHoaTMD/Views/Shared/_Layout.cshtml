@@ -67,13 +67,18 @@
                                 <ul class="navbar_menu">
                                     @Html.Action("MenuTop", "Menu")
                                 </ul>
+
                                 <ul class="navbar_menu">
-                                    <li>
-                                        <form action="" id="search-box">
-                                            <input type="text" id="search-text" />
-                                            <button type="submit" id="search-btn"><i class="fa fa-search"></i></button>
-                                        </form>
-                                    </li>
+                                    @using (Html.BeginForm("IndexSearch", "Product", FormMethod.Get, new { }))
+                                    {
+                                        <li>
+                                            <div id="search-box">
+                                                @Html.TextBox("Searchtext")
+                                                <button type="submit" id="search-btn"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </li>
+                                    }
+
                                 </ul>
                                 <ul class="navbar_user">
                                     <li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>

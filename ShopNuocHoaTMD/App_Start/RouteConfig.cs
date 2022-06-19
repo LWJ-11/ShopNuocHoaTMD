@@ -19,12 +19,24 @@ namespace ShopNuocHoaTMD
                 namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
             );
             routes.MapRoute(
+                name: "BrandItem",
+                url: "brands/{alias}-{id}",
+                defaults: new { controller = "Product", action = "ProductBrand", id = UrlParameter.Optional },
+                namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Product",
                 url: "product",
                 defaults: new { controller = "Product", action = "Index", alias = UrlParameter.Optional },
                 namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
             );
-            
+            routes.MapRoute(
+                name: "Brand",
+                url: "brands",
+                defaults: new { controller = "Product", action = "IndexBrand", alias = UrlParameter.Optional },
+                namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

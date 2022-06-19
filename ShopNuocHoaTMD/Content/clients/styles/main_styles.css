@@ -631,7 +631,7 @@ section
 #search-box{
 	height:35px;
 }
-	#search-box #search-text {
+	#search-box #Searchtext {
 		bottom: 5%;
 		left: 3%;
 		position: relative;
@@ -1274,7 +1274,7 @@ section
 }
 .deal_ofthe_week_img
 {
-	height: 540px;
+	height: 500px;
 }
 .deal_ofthe_week_img img
 {
