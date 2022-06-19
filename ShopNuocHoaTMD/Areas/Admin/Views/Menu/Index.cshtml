@@ -84,6 +84,7 @@
                         <th>Name</th>
                         <th>Position</th>
                         <th>Created date</th>
+                        <th>Modified date</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -93,23 +94,24 @@
                         var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
-                            <tr id="trow_@item.Menu_Id">
-                                <td>@i</td>
-                                <td>@item.Title</td>
-                                <td>@item.Position</td>
-                                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
-                                <td>
-                                    <a href="/Admin/Menu/Edit/@item.Menu_Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id="@item.Menu_Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
-                                </td>
-                            </tr>
+                    <tr id="trow_@item.Menu_Id">
+                        <td>@i</td>
+                        <td>@item.Title</td>
+                        <td>@item.Position</td>
+                        <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                        <td>@item.ModifiedDate.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a href="/Admin/Menu/Edit/@item.Menu_Id" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="#" data-id="@item.Menu_Id" class="btn btn-sm btn-danger btnDelete">Delete</a>
+                        </td>
+                    </tr>
                             i++;
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="4">Không có bản ghi nào</td>
+                            <td colspan="4">There is no record</td>
                         </tr>
                     }
                 </tbody>

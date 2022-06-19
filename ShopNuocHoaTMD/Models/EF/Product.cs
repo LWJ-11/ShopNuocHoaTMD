@@ -11,6 +11,11 @@ namespace ShopNuocHoaTMD.Models.EF
     [Table("tb_Product")]
     public class Product:CommonAbstract
     {
+        public Product()
+        {
+            this.ProductImage = new HashSet<ProductImage>();
+            this.OrderDetail = new HashSet<OrderDetail>();
+        }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Product_Id { get; set; }
@@ -31,11 +36,12 @@ namespace ShopNuocHoaTMD.Models.EF
         public int Category_Id { get; set; }
         public int Topic_Id { get; set; }
         public string Alias { get; set; }
+        public int Price { get; set; }
+        public int Size { get; set; }
 
 
-        public List<ProductPrice> ProductPrice { get; set; }
-        public List<OrderDetail> OrderDetail { get; set; }
-        public List<ProductImage> ProductImage { get; set; }
+        public virtual ICollection<ProductImage> ProductImage { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
         public virtual Topic Topic { get; set; }

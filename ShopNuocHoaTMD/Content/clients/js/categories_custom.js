@@ -393,11 +393,11 @@ jQuery(document).ready(function($)
 		{
 			range: true,
 			min: 0,
-			max: 1000,
-			values: [ 0, 580 ],
+			max: 175,
+			values: [ 0, 80 ],
 			slide: function( event, ui )
 			{
-				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
 			}
 		});
 			

@@ -123,3 +123,5 @@ F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\Sh
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\PagedList.Mvc.xml
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.AddProductImage.resources
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.AllowHtml.resources
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.Product_Images.resources
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.Product.resources

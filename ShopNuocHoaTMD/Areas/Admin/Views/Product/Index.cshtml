@@ -34,6 +34,10 @@
         </li>
     </ul>
 }
+
+<!-- JqueryUI Dialog -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -57,14 +61,14 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Brand List</h3>
+            <h3 class="card-title">Product List</h3>
 
             <div class="card-tools">
                 <a href="/Admin/Product/Add" class="btn btn-primary">Add</a>
             </div>
         </div>
         <div class="card-body">
-            @*<div class="row">
+            <div class="row">
                 <div class="col-6">
                     @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { }))
                     {
@@ -76,15 +80,20 @@
                         </div>
                     }
                 </div>
-            </div>*@
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Number</th>
-                        <th>Name</th>
                         <th>Image</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Size</th>
                         <th>Created date</th>
                         <th>Modified date</th>
+                        <th>Home</th>
+                        <th>Hot</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -96,16 +105,26 @@
                         var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
+                            var strCheckHome = item.isHome ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
+                            var strCheckHot = item.isHot ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
                             <tr id="trow_@item.Product_Id">
                                 <td>@i</td>
+                                <td><img class="imgproduct" data-id="@item.Product_Id" src="@item.ProductImage.FirstOrDefault(x=>x.isDefault).Image" width="80" /></td>
                                 <td>@item.Name</td>
-                                <td><img src="@item.Image" style="width:50px;" /></td>
-                                <td>@item.Image</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.ModifiedDate</td>
+                                <td>@item.Brand.Name</td>
+                                <td>$@item.Price</td>
+                                <td>@item.Size ml</td>
+                                <td>@item.CreatedDate.ToString("dd/MM/yyy")</td>
+                                <td>@item.ModifiedDate.ToString("dd/MM/yyy")</td>
+                                <td class="text-center">
+                                    <a href="#" data-id="@item.Product_Id" class="btnHome">@Html.Raw(strCheckHome)</a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="#" data-id="@item.Product_Id" class="btnHot">@Html.Raw(strCheckHot)</a>
+                                </td>
                                 <td>
-                                    <a href="/Admin/Product/Edit/@item.Product_Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id="@item.Product_Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                    <a href="/Admin/Product/Edit/@item.Product_Id" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="#" data-id="@item.Product_Id" class="btn btn-sm btn-danger btnDelete">Delete</a>
                                 </td>
                             </tr>
                             i++;
@@ -114,7 +133,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4">Không có bản ghi nào</td>
+                            <td colspan="4">There is no record</td>
                         </tr>
                     }
                 </tbody>
@@ -131,27 +150,92 @@
     <!-- /.card -->
 
 </section>
-<!-- /.content -->
+
+<div id="dialog">
+    <iframe id="myIFrame" style="border:0;width:100%;height:100%;"></iframe>
+</div>
+
 @section scripts{
+
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script>
-            $(document).ready(function () {
-                $('body').on('click', '.btnDelete', function () {
-                    var id = $(this).data("id");
-                    var conf = confirm('Do you want to delete this record?')
-                    if (conf === true) {
-                        $.ajax({
-                            url: '/admin/brand/delete',
-                            type: 'POST',
-                            data: { id: id },
-                            success: function (rs) {
-                                if (rs.success) {
-                                    $('#trow_' + id).remove(); l
-                                }
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id");
+                var conf = confirm('Do you want to delete this record?')
+                if (conf === true) {
+                    $.ajax({
+                        url: '/admin/product/delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove(); l
                             }
-                        })
+                        }
+                    })
+                }
+            });
+            $("#dialog").dialog({
+                autoOpen: false,
+                show: "fade",
+                hide: "fade",
+                modal: true,
+                height: '600',
+                width: '700',
+                resizable: true,
+                title: 'Product Images',
+                close: function () {
+                    window.location.reload();
+                }
+            });
+            $('body').on("click", ".imgproduct", function () {
+                var proid = $(this).attr("data-id");
+                $("#dialog #myIFrame").attr("src", "/admin/ProductImage/Index?id=" + proid);
+                $('#dialog').dialog('open');
+                return false;
+            });
+            $('body').on('click', '.btnHome', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/product/isHome',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.isHome) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            } else {
+                                btn.html("<i class ='fa fa-times text-danger'></i>");
+                            }
+
+                        }
                     }
                 });
             });
+            $('body').on('click', '.btnHot', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/product/isHot',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.isHot) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            } else {
+                                btn.html("<i class ='fa fa-times text-danger'></i>");
+                            }
+
+                        }
+                    }
+                });
+            });
+        });
 
     </script>
 }

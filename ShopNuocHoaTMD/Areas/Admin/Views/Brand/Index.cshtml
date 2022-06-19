@@ -103,8 +103,8 @@
                                 <td>@item.Email</td>
                                 <td>@item.Address</td>
                                 <td>
-                                    <a href="/Admin/Brand/Edit/@item.Brand_Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id="@item.Brand_Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                    <a href="/Admin/Brand/Edit/@item.Brand_Id" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="#" data-id="@item.Brand_Id" class="btn btn-sm btn-danger btnDelete">Delete</a>
                                 </td>
                             </tr>
                             i++;
@@ -113,7 +113,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4">Không có bản ghi nào</td>
+                            <td colspan="4">There is no record</td>
                         </tr>
                     }
                 </tbody>
