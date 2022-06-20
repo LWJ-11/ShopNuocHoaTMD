@@ -244,6 +244,10 @@
     <Compile Include="Migrations\202206170444412_Product.designer.cs">
       <DependentUpon>202206170444412_Product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206200555094_ChangePrice.cs" />
+    <Compile Include="Migrations\202206200555094_ChangePrice.designer.cs">
+      <DependentUpon>202206200555094_ChangePrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Common\Filter.cs" />
@@ -999,6 +1003,7 @@
     <Content Include="Content\clients\js\contact_custom.js" />
     <Content Include="Content\clients\js\custom.js" />
     <Content Include="Content\clients\js\jquery-3.2.1.min.js" />
+    <Content Include="Content\clients\js\jsShopping.js" />
     <Content Include="Content\clients\js\single_custom.js" />
     <Content Include="Content\clients\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Content\clients\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
@@ -3121,6 +3126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206170444412_Product.resx">
       <DependentUpon>202206170444412_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206200555094_ChangePrice.resx">
+      <DependentUpon>202206200555094_ChangePrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

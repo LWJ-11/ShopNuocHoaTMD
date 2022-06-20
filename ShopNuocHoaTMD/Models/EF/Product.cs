@@ -36,7 +36,7 @@ namespace ShopNuocHoaTMD.Models.EF
         public int Category_Id { get; set; }
         public int Topic_Id { get; set; }
         public string Alias { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public int Size { get; set; }
 
 

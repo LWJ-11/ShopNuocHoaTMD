@@ -78,7 +78,7 @@ namespace ShopNuocHoaTMD.Controllers
             var items = _dbConnect.Product.Where(x => x.isHot).Take(12).ToList();
             return PartialView(items);
         }
-        public ActionResult Detail(int? id)
+        public ActionResult Detail(string alias, int? id)
         {
             var item = _dbConnect.Product.Find(id);
             return View(item);

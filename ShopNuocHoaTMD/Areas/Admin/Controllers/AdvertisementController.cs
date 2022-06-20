@@ -42,9 +42,12 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(model.Alias == null)
+                {
+                    model.Alias = ShopNuocHoaTMD.Models.Common.Filter.FilterChar(model.Title);
+                }
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
-                model.Alias = ShopNuocHoaTMD.Models.Common.Filter.FilterChar(model.Title);
                 _dbConnect.Advertisements.Add(model);
                 _dbConnect.SaveChanges();
                 return RedirectToAction("Index");
@@ -65,7 +68,10 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
             {
                 _dbConnect.Advertisements.Attach(model);
                 model.ModifiedDate = DateTime.Now;
-                model.Alias = ShopNuocHoaTMD.Models.Common.Filter.FilterChar(model.Title);
+                if (model.Alias == null)
+                {
+                    model.Alias = ShopNuocHoaTMD.Models.Common.Filter.FilterChar(model.Title);
+                }
                 _dbConnect.Entry(model).Property(x => x.Title).IsModified = true;
                 _dbConnect.Entry(model).Property(x => x.Description).IsModified = true;
                 _dbConnect.Entry(model).Property(x => x.Alias).IsModified = true;

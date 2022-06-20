@@ -883,6 +883,7 @@ section
 }
 .product_details_title p
 {
+	font-size: 24px;
 	color: #;
 }
 
@@ -1033,7 +1034,7 @@ section
 .product_price
 {
 	display: inline-block;
-	font-size: 24px;
+	font-size: 40px;
 	color: #fe4c50;
 	font-weight: 500;
 	line-height: 30px;

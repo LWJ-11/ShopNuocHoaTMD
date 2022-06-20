@@ -59,30 +59,35 @@
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(x => x.Adv_Id)
                             <!-- your steps content here -->
-                            <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Menu Title</label>
-                                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Example: New.." })
-                                    @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Description</label>
-                                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", style = "height:200px !important;" })
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Image</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
-                                        </div>
-                                        <div class="input-group-append">
-                                            <input type="button" value="Choose File" onclick="BrowseServer('txtImage')" />
-                                        </div>
+                        <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Menu Title</label>
+                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Example: New.." })
+                                @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Link</label>
+                                @Html.TextBoxFor(x => x.Alias, new { @class = "form-control", @placeholder = "Example: New.." })
+                                @Html.ValidationMessageFor(x => x.Alias, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Description</label>
+                                @Html.TextAreaFor(x => x.Description, new { @class = "form-control", style = "height:200px !important;" })
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Image</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input type="button" value="Choose File" onclick="BrowseServer('txtImage')" />
                                     </div>
                                 </div>
-                                <a href="/Admin/Menu" class="btn btn-danger">Back</a>
-                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
+                            <a href="/Admin/Menu" class="btn btn-danger">Back</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                         }
                     </div>
                 </div>
