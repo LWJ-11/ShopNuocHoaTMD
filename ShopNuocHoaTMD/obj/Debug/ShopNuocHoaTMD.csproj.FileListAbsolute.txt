@@ -126,3 +126,4 @@ F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\Sh
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.Product_Images.resources
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.Product.resources
 F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.ChangePrice.resources
+F:\Visual Studio Projects\New folder (6)\ShopNuocHoaTMD_Ver0.2\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.Cart.resources

@@ -193,6 +193,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -248,8 +249,13 @@
     <Compile Include="Migrations\202206200555094_ChangePrice.designer.cs">
       <DependentUpon>202206200555094_ChangePrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206201532483_Cart.cs" />
+    <Compile Include="Migrations\202206201532483_Cart.designer.cs">
+      <DependentUpon>202206201532483_Cart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cart\CartModel.cs" />
     <Compile Include="Models\Common\Filter.cs" />
     <Compile Include="Models\EF\Advertisement.cs" />
     <Compile Include="Models\EF\Brand.cs" />
@@ -2862,8 +2868,10 @@
     <Content Include="Content\clients\styles\contact_styles.css" />
     <Content Include="Content\clients\styles\main_styles.css" />
     <Content Include="Content\clients\styles\responsive.css" />
+    <Content Include="Content\clients\styles\responsivecart.css" />
     <Content Include="Content\clients\styles\single_responsive.css" />
     <Content Include="Content\clients\styles\single_styles.css" />
+    <Content Include="Content\clients\styles\ui.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -3073,12 +3081,12 @@
     <Content Include="Views\Product\IndexBrand.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\IndexSearch.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\core\connector\aspx\Uploads\files\" />
-    <Folder Include="Models\ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3129,6 +3137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206200555094_ChangePrice.resx">
       <DependentUpon>202206200555094_ChangePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206201532483_Cart.resx">
+      <DependentUpon>202206201532483_Cart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

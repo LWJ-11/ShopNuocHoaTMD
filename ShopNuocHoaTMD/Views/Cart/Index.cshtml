@@ -1,0 +1,187 @@
+﻿@model IEnumerable<ShopNuocHoaTMD.Models.Cart.CartModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/clients/styles/ui.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/clients/styles/responsivecart.css" rel="stylesheet" type="text/css" />
+
+
+<section class="section-content padding-y" style="margin-top:150px">
+    <div class="container">
+
+        <div class="row">
+            <main class="col-md-9">
+                <div class="card">
+
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col" width="120" style="text-align:center;">Product</th>
+                                <th scope="col"></th>
+                                <th scope="col" width="120" style="text-align:center;">Quantity</th>
+                                <th scope="col" width="120">Price</th>
+                                <th scope="col" class="text-right" width="200"> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    var strImg = "";
+                                    var img = item.Product.ProductImage.FirstOrDefault(x => x.isDefault);
+                                    if (img != null)
+                                    {
+                                        strImg = img.Image;
+                                    }
+
+                                    <tr id="product-@item.Product.Product_Id">
+                                        <td>
+                                            <figure class="itemside">
+                                                <div class="aside"><img src="@strImg" class="img-sm"></div>
+                                                <figcaption class="info" style="width:180px;">
+                                                    <a href="#" class="title text-dark">@item.Product.Name</a>
+                                                    <p class="text-muted small">Brand: @item.Product.Brand.Name</p>
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+                                        <td>
+                                        <td>
+                                            @*<input type="text" value="@item.Quantity" />*@
+                                            <div class="quantity_selector">
+                                                <span class="minus-@item.Product.Product_Id"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                <span id="quantity_value-@item.Product.Product_Id">@item.Quantity</span>
+                                                <span class="plus-@item.Product.Product_Id"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="price-wrap">
+                                                <var class="price">$@item.Product.Price</var>
+                                                <small class="text-muted"> $@item.Product.Price each </small>
+                                            </div> <!-- price-wrap .// -->
+                                        </td>
+                                        <td class="text-right" style="display:flex;">
+                                            <input type="hidden" value="@item.Product.Product_Id" id="productid" />
+                                            <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
+                                            <a href="" class="btn btn-light btnRemove"> Remove</a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4">
+                                        <h3>There is no product in cart</h3>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <div class="card-body border-top">
+                        <a href="#" class="btn btn-primary float-md-right" style="background-color: #f80438"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+                        <a href="/" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+                    </div>
+                </div> <!-- card.// -->
+
+                <div class="alert alert-success mt-3">
+                    <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+                </div>
+
+            </main> <!-- col.// -->
+            <aside class="col-md-3">
+                <!--<div class="card mb-3">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Have coupon?</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="" placeholder="Coupon code">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-primary">Apply</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>-->
+                <!-- card-body.// -->
+                <!--</div>-->  <!-- card .// -->
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right">USD 568</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right">USD 658</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right  h5"><strong>$1,650</strong></dd>
+                        </dl>
+                        @*<hr>
+                            <p class="text-center mb-3">
+                                <img src="images/misc/payments.png" height="26">
+                            </p>*@
+
+                    </div> <!-- card-body.// -->
+                </div>  <!-- card .// -->
+            </aside> <!-- col.// -->
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+@section Scripts{
+    @foreach (var item in Model)
+    {
+<script>
+            jQuery(document).ready(function ($) {
+                if ($('.plus-@item.Product.Product_Id').length && $('.minus-@item.Product.Product_Id').length) {
+                    var plus = $('.plus-@item.Product.Product_Id');
+                    var minus = $('.minus-@item.Product.Product_Id');
+                    var value = $('#quantity_value-@item.Product.Product_Id');
+
+                    plus.on('click', function () {
+                        var x = parseInt(value.text());
+                        value.text(x + 1);
+                    });
+
+                    minus.on('click', function () {
+                        var x = parseInt(value.text());
+                        if (x > 1) {
+                            value.text(x - 1);
+                        }
+                    });
+                }
+            });
+</script>
+        }
+<script>
+        $(document).ready(function () {
+        $('body').on('click', '.btnRemove', function (e) {
+        e.preventDefault();
+        var model = {};
+        model.id = $("#productid").val();
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("Remove","Cart")',
+                data: JSON.stringify(model),
+                dataType: "json",
+                contentType:"application/json; charset=utf-8",
+                success: function () {
+                    $('#checkout_items').text(@Session["count"]) - 1;
+                    $("#product-" + model.id).remove();
+                },
+                error: function () {
+                    alert("An error occurred when adding product");
+                }
+            });
+    });
+});
+</script>
+    }
+

@@ -42,6 +42,12 @@ namespace ShopNuocHoaTMD
                 defaults: new { controller = "Product", action = "Detail", alias = UrlParameter.Optional },
                 namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
             );
+            routes.MapRoute(
+               name: "Cart",
+               url: "cart",
+               defaults: new { controller = "Cart", action = "Index", alias = UrlParameter.Optional },
+               namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
+           );
 
             routes.MapRoute(
                 name: "Default",
@@ -49,6 +55,7 @@ namespace ShopNuocHoaTMD
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
             );
+
         }
     }
 }

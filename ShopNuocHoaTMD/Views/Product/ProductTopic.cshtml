@@ -180,5 +180,36 @@
     <script src="~/Content/clients/plugins/easing/easing.js"></script>
     <script src="~/Content/clients/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="~/Content/clients/js/categories_custom.js"></script>
+    <script>
+        $(document).ready(function () {
+    $('body').on('click', '.btnAddToCart', function (e) {
+        e.preventDefault();
+        var model = {};
+        model.id = $(this).data("id");
+        model.quantity = 1;
+        var tQuantity = $('#quantity_value').text();
+        if (tQuantity != '') {
+
+            model.quantity = parseInt(tQuantity);
+        }
+
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart","Cart")',
+                data: JSON.stringify(model),
+                dataType: "json",
+                contentType:"application/json; charset=utf-8",
+                success: function () {
+                    alert("Adding product successfully!")
+                    $('#checkout_items').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("An error occurred when adding product");
+                }
+            });
+            return false;
+    });
+});
+    </script>
 }
 
