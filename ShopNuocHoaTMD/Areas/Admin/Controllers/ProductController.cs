@@ -135,6 +135,19 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
             return Json(new { success = false });
         }
         [HttpPost]
+        public ActionResult isBestSeller(int id)
+        {
+            var item = _dbConnect.Product.Find(id);
+            if (item != null)
+            {
+                item.isBestSeller = !item.isBestSeller;
+                _dbConnect.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                _dbConnect.SaveChanges();
+                return Json(new { success = true, isBestSeller = item.isBestSeller });
+            }
+            return Json(new { success = false });
+        }
+        [HttpPost]
         public ActionResult isHot(int id)
         {
             var item = _dbConnect.Product.Find(id);

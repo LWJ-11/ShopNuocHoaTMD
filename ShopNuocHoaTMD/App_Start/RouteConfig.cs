@@ -13,6 +13,18 @@ namespace ShopNuocHoaTMD
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
+                name: "Contact",
+                url: "contact",
+                defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Shopping Cart",
+                url: "shopping-cart",
+                defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Topic",
                 url: "topic/{alias}-{id}",
                 defaults: new { controller = "Product", action = "ProductTopic", id = UrlParameter.Optional },
@@ -42,12 +54,6 @@ namespace ShopNuocHoaTMD
                 defaults: new { controller = "Product", action = "Detail", alias = UrlParameter.Optional },
                 namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
             );
-            routes.MapRoute(
-               name: "Cart",
-               url: "cart",
-               defaults: new { controller = "Cart", action = "Index", alias = UrlParameter.Optional },
-               namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
-           );
 
             routes.MapRoute(
                 name: "Default",
@@ -55,7 +61,6 @@ namespace ShopNuocHoaTMD
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
             );
-
         }
     }
 }

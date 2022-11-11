@@ -70,12 +70,12 @@ namespace ShopNuocHoaTMD.Controllers
         }
         public ActionResult Partial_ItemsByTopicID()
         {
-            var items = _dbConnect.Product.Where(x => x.isHome).Take(12).ToList();
+            var items = _dbConnect.Product.Where(x => x.isHome).Take(15).ToList();
             return PartialView(items);
         }
         public ActionResult Partial_ProductBestSeller()
         {
-            var items = _dbConnect.Product.Where(x => x.isHot).Take(12).ToList();
+            var items = _dbConnect.Product.Where(x => x.isHot).Take(10).ToList();
             return PartialView(items);
         }
         public ActionResult Detail(string alias, int? id)

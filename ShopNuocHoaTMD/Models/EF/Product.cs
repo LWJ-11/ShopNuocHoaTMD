@@ -30,6 +30,7 @@ namespace ShopNuocHoaTMD.Models.EF
         [Required]
         public int Quanity { get; set; }
         public bool isHome { get; set; }
+        public bool isBestSeller { get; set; }
         public bool isFeature { get; set; }
         public bool isHot { get; set; }
         public int Brand_Id { get; set; }

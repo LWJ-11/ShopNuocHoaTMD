@@ -83,10 +83,11 @@
             </div>
             <table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>Number</th>
                         <th>Image</th>
                         <th>Name</th>
+                        <th>Topic</th>
                         <th>Brand</th>
                         <th>Price</th>
                         <th>Size</th>
@@ -94,6 +95,7 @@
                         <th>Modified date</th>
                         <th>Home</th>
                         <th>Hot</th>
+                        <th>BSeller</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -107,10 +109,12 @@
                         {
                             var strCheckHome = item.isHome ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
                             var strCheckHot = item.isHot ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
-                            <tr id="trow_@item.Product_Id">
+                            var strCheckBestSeller = item.isBestSeller ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
+                            <tr id="trow_@item.Product_Id"  class="text-center">
                                 <td>@i</td>
                                 <td><img class="imgproduct" data-id="@item.Product_Id" src="@item.ProductImage.FirstOrDefault(x=>x.isDefault).Image" width="80" /></td>
                                 <td>@item.Name</td>
+                                <td>@item.Topic.Title</td>
                                 <td>@item.Brand.Name</td>
                                 <td>$@item.Price</td>
                                 <td>@item.Size ml</td>
@@ -121,6 +125,9 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="#" data-id="@item.Product_Id" class="btnHot">@Html.Raw(strCheckHot)</a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="#" data-id="@item.Product_Id" class="btnBestSeller">@Html.Raw(strCheckBestSeller)</a>
                                 </td>
                                 <td>
                                     <a href="/Admin/Product/Edit/@item.Product_Id" class="btn btn-sm btn-primary">Edit</a>
@@ -226,6 +233,26 @@
                     success: function (rs) {
                         if (rs.success) {
                             if (rs.isHot) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            } else {
+                                btn.html("<i class ='fa fa-times text-danger'></i>");
+                            }
+
+                        }
+                    }
+                });
+            });
+            $('body').on('click', '.btnBestSeller', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/product/isBestSeller',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.isBestSeller) {
                                 btn.html("<i class='fa fa-check text-success'></i>");
                             } else {
                                 btn.html("<i class ='fa fa-times text-danger'></i>");

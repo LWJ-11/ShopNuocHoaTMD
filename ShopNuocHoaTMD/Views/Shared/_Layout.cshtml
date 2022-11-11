@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/clients/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="~/Content/clients/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="~/Content/clients/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/toastr.css"/>
 </head>
 
 <body>
@@ -67,25 +68,19 @@
                                 <ul class="navbar_menu">
                                     @Html.Action("MenuTop", "Menu")
                                 </ul>
-
-                                <ul class="navbar_menu">
-                                    @using (Html.BeginForm("IndexSearch", "Product", FormMethod.Get, new { }))
-                                    {
-                                        <li>
-                                            <div id="search-box">
-                                                @Html.TextBox("Searchtext")
-                                                <button type="submit" id="search-btn"><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </li>
-                                    }
-
-                                </ul>
+                                @using (Html.BeginForm("IndexSearch", "Product", FormMethod.Get, new { }))
+                                {
+                                    <div id="search-box">
+                                        @Html.TextBox("Searchtext")
+                                        <button type="submit" id="search-btn"><i class="fa fa-search"></i></button>
+                                    </div>
+                                }
                                 <ul class="navbar_user">
                                     <li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
                                     <li class="checkout">
-                                        <a href="/cart">
+                                        <a href="/shopping-cart">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            <span id="checkout_items" style="background: #f80438;" class="checkout_items" >@Session["count"]</span>
+                                            <span id="checkout_items" style="background: #f80438;" class="checkout_items">0</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -199,7 +194,10 @@
         }
     </script>
     <script src="~/Content/clients/js/jquery-3.2.1.min.js"></script>
-    @RenderSection("scripts", required:false )
+    <script src="~/Content/clients/js/jsShopping.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>

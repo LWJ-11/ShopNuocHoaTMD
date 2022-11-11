@@ -10,7 +10,7 @@
         {
             strImg = img.Image;
         }
-        <div class="product-item @item.Topic.Alias">
+        <div class="product-item @item.Topic.Alias @item.isBestSeller">
             <div class="product discount product_filter">
                 <div class="product_image">
                     <a href="/detail/@item.Alias-p@(item.Product_Id)">
@@ -24,7 +24,8 @@
                     <div class="product_price">$@item.Price</div>
                 </div>
             </div>
-            <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Product_Id">add to cart</a></div>
+            <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Product_Id">Add to cart</a></div>
         </div>
+
     }
 }

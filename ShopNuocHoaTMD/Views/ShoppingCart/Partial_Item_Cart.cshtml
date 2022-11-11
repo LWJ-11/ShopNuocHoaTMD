@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ShopNuocHoaTMD.Models.ShoppingCartItem>
+
+@if (Model != null && Model.Any())
+{
+    var i = 0;
+    var tongtien = decimal.Zero;
+    <table class="table">
+        <tr class="text-center">
+            <th>Order</th>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Product Type</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>TotalPrice</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            tongtien += item.TotalPrice;
+            <tr class="text-center" id="trow_@item.ProductId">
+                <td>@(i + 1)</td>
+                <td><a href="/detail/@item.ProductAlias-p@(item.ProductId)"><img class="product-image" width="60px" src="@item.ProductImg" alt="@item.ProductName" /></a></td>
+                <td><a href="/detail/@item.ProductAlias-p@(item.ProductId)" style="color:black">@item.ProductName</a></td>
+                <td>@item.CategoryName</td>
+                <td>$@item.Price</td>
+                <td>
+                    <input type="number" value="@item.Quantity" class="form-control" id="Quantity_@item.ProductId" style="width: 60px; text-align: center" />
+                </td>
+                <td>$ @item.TotalPrice</td>
+                <td style="width:160px">
+                    <a href="#" class="btn btn-sm btn-danger btnDelete" data-id="@item.ProductId">Remove</a>
+                    <a href="#" class="btn btn-sm btn-success btnUpdate" data-id="@item.ProductId">Update</a>
+                </td>
+            </tr>
+            i++;
+        }
+        <tr>
+            <th colspan="6" class="text-right">Total: </th>
+            <th class="text-center">$@tongtien</th>
+        </tr>
+        <tr>
+            <th colspan="7" class="text-right"></th>
+            <th width="260px" class="text-center">
+                <a href="#" class="btn btn-danger btnDeleteAll">Remove All</a>
+                <a href="#" class="btn btn-success">Check out</a>
+            </th>
+        </tr>
+    </table>
+}
+else
+{
+    <h2>Your shopping bag is empty. <a href="/">Shop now</a></h2>
+}
