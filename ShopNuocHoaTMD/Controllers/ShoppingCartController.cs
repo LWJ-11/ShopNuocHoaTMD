@@ -18,6 +18,15 @@ namespace ShopNuocHoaTMD.Controllers
         {
             return View();
         }
+        public ActionResult Partial_Item_CheckOut()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null)
+            {
+                return PartialView(cart.Items);
+            }
+            return PartialView();
+        }
         public ActionResult Partial_Item_Cart()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];

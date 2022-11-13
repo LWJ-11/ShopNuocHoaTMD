@@ -4,6 +4,10 @@
 {
     var i = 0;
     var tongtien = decimal.Zero;
+    <div style="display: flex;">
+        <h3 class="mb-4 mt-0">Your shopping bag</h3>
+        <h5 class="mt-3 pos-right" style="position: relative; left:50%; font-weight: lighter"><a style="color: black; text-decoration: underline;" href="/">Continue shopping</a> <span>></span></h5>
+    </div>
     <table class="table">
         <tr class="text-center">
             <th>Order</th>
@@ -13,7 +17,6 @@
             <th>Price</th>
             <th>Quantity</th>
             <th>TotalPrice</th>
-            <th>Action</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -28,9 +31,9 @@
                     <input type="number" value="@item.Quantity" class="form-control" id="Quantity_@item.ProductId" style="width: 60px; text-align: center" />
                 </td>
                 <td>$ @item.TotalPrice</td>
-                <td style="width:160px">
-                    <a href="#" class="btn btn-sm btn-danger btnDelete" data-id="@item.ProductId">Remove</a>
-                    <a href="#" class="btn btn-sm btn-success btnUpdate" data-id="@item.ProductId">Update</a>
+                <td colspan="2">
+                    <a href="#" class="btn hover-red-button btnDelete"  data-id="@item.ProductId"><i class="fa fa-times"></i></a>
+                    <a href="#" class="btn hover-red-button btnUpdate" data-id="@item.ProductId"><i class="fa fa-refresh" aria-hidden="true"></i></a>
                 </td>
             </tr>
             i++;
@@ -40,10 +43,12 @@
             <th class="text-center">$@tongtien</th>
         </tr>
         <tr>
+            <th>
+                <a href="#" class="btn btn-lg btn-outline-danger btnDeleteAll"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            </th>
             <th colspan="7" class="text-right"></th>
-            <th width="260px" class="text-center">
-                <a href="#" class="btn btn-danger btnDeleteAll">Remove All</a>
-                <a href="#" class="btn btn-success">Check out</a>
+            <th  class="text-center">
+                <a href="/check-out" class="btn btn-danger">Proceed to Checkout</a>
             </th>
         </tr>
     </table>

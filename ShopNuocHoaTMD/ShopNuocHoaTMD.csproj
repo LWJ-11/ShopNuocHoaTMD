@@ -261,16 +261,20 @@
     <Compile Include="Migrations\202211021322511_isbestseller.designer.cs">
       <DependentUpon>202211021322511_isbestseller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211130413327_update-db.cs" />
+    <Compile Include="Migrations\202211130413327_update-db.designer.cs">
+      <DependentUpon>202211130413327_update-db.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Common\Filter.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\EF\Advertisement.cs" />
     <Compile Include="Models\EF\Brand.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\CommonAbstract.cs" />
     <Compile Include="Models\EF\DeliveryMethod.cs" />
     <Compile Include="Models\EF\Menu.cs" />
-    <Compile Include="Models\EF\MenuDetail.cs" />
     <Compile Include="Models\EF\Order.cs" />
     <Compile Include="Models\EF\OrderDetail.cs" />
     <Compile Include="Models\EF\Product.cs" />
@@ -3096,6 +3100,7 @@
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Partial_Item_Cart.cshtml" />
     <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_Item_CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3160,6 +3165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211021322511_isbestseller.resx">
       <DependentUpon>202211021322511_isbestseller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211130413327_update-db.resx">
+      <DependentUpon>202211130413327_update-db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

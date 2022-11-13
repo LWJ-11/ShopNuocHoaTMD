@@ -3,5 +3,62 @@
     ViewBag.Title = "Check Out";
 }
 
-<h2>CheckOut</h2>
+<link rel="stylesheet" type="text/css" href="~/Content/clients/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="~/Content/clients/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/clients/styles/categories_responsive.css">
+
+
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center mb-2">
+                <ul>
+                    <li><a href="/Home">Home</a></li>
+                    <li class="active"><a href="/shopping-cart"><i class="fa fa-angle-right" aria-hidden="true"></i>Shopping Cart</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Check Out</a></li>
+                </ul>
+            </div>
+            <!-- Main Content -->
+
+            <div class="main_content">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2>Check out</h2>
+                        <p>Please check your order info</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>Personal Info</h4>
+                        <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; padding:20px;">
+                            <div class="form-group">
+                                <label for="customer-name">Full Name</label>
+                                <input type="text" name="customer-name" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone-number">Phone number</label>
+                                <input type="tel" name="phone-numer" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" />
+                            </div>
+                        </div>
+                        <h5 class="mt-3 pos-right" style="position: relative; left:0; font-weight: lighter"><span><</span> <a style="color: black; text-decoration: underline;" href="/shopping-cart">Back to Cart</a></h5>
+                    </div>
+                    <div class="col-md-4">
+                            @Html.Action("Partial_Item_CheckOut", "ShoppingCart")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

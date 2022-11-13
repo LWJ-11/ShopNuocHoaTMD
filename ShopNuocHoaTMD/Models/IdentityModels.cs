@@ -30,7 +30,6 @@ namespace ShopNuocHoaTMD.Models
         public DbSet<Category> Category { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethod { get; set; }
         public DbSet<Menu> Menu { get; set; }
-        public DbSet<MenuDetail> MenuDetail { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         public DbSet<Product> Product { get; set; }

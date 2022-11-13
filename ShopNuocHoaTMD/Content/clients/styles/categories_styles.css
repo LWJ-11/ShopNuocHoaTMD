@@ -1555,6 +1555,12 @@ section
 	margin-bottom: 0px;
 	color: #51545f;
 }
+.hover-red-button{
+	color: black !important;
+}
+.hover-red-button:hover {
+	color: darkred !important;
+}
 
 /*********************************
 9. Newsletter

@@ -27,7 +27,7 @@
     $('body').on('click', '.btnDelete', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
-        toastr.warning("<br /><button type='button' id='confirmationButtonYes' class='btn clear' style='margin:0px;'>Yes</button>", 'Do you want to remove all items in bag?',
+        toastr.warning("<br /><button type='button' id='confirmationButtonYes' class='btn clear' style='margin:0px; float:right;'>Yes</button>", 'Do you want to remove all items in bag?',
             {
                 closeButton: false,
                 allowHtml: true,
@@ -51,7 +51,7 @@
     });
     $('body').on('click', '.btnDeleteAll', function (e) {
         e.preventDefault();
-        toastr.warning("<br /><button type='button' id='confirmationButtonYes' class='btn clear'>Yes</button>", 'Do you want to remove all items in bag?',
+        toastr.warning("<br /><button type='button' id='confirmationButtonYes' class='btn clear' style='margin:0px; float:right;'>Yes</button>", 'Do you want to remove all items in bag?',
             {
                 closeButton: false,
                 allowHtml: true,

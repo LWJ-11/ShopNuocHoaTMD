@@ -10,10 +10,6 @@ namespace ShopNuocHoaTMD.Models.EF
     [Table("tb_Menu")]
     public class Menu : CommonAbstract
     {
-        public Menu()
-        {
-            this.MenuDetails = new HashSet<MenuDetail>();
-        }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Menu_Id { get; set; }
@@ -25,7 +21,5 @@ namespace ShopNuocHoaTMD.Models.EF
         [Required(ErrorMessage = "Không được để trống vị trí")]
         public int Position { get; set; }
         public string Alias { get; set; }
-
-        public ICollection<MenuDetail> MenuDetails { get; set; }
     }
 }

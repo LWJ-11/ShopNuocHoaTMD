@@ -18,7 +18,6 @@ namespace ShopNuocHoaTMD.Models.EF
         public int Product_Id { get; set; }
         public int Quanity { get; set; }
         public double TotalAmount { get; set; }
-        public int Delivery_Id { get; set; }
 
         [ForeignKey("Product_Id")]
         public Product Product { get; set; }

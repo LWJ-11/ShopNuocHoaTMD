@@ -25,6 +25,12 @@ namespace ShopNuocHoaTMD
                 namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
             );
             routes.MapRoute(
+                name: "Check Out",
+                url: "check-out",
+                defaults: new { controller = "ShoppingCart", action = "CheckOut", id = UrlParameter.Optional },
+                namespaces: new[] { "ShopNuocHoaTMD.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Topic",
                 url: "topic/{alias}-{id}",
                 defaults: new { controller = "Product", action = "ProductTopic", id = UrlParameter.Optional },
