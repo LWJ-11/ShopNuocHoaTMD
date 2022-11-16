@@ -8,8 +8,14 @@ using System.Web;
 namespace ShopNuocHoaTMD.Models.EF
 {
     [Table("tb_Order")]
-    public class Order
+    public class Order:CommonAbstract
     {
+        public Order()
+        {
+            IsDelivered = false;
+            IsPaid = false;
+            this.OrderDetail = new HashSet<OrderDetail>();
+        }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Order_Id { get; set; }
@@ -18,15 +24,19 @@ namespace ShopNuocHoaTMD.Models.EF
         [Required]
         public bool IsPaid { get; set; }
         public DateTime OrderDate { get; set; }
-        public DateTime DeliveredDate { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Full name is required")]
         public string CustomerName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Mobile number is required")]
         public string Phone { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; }
-        public int Delivery_Id { get; set; }
-        public List<OrderDetail> OrderDetail { get; set; }
-        public virtual DeliveryMethod DeliveryMethod { get; set; }
+        [Required(ErrorMessage = "E-mail is required")]
+        public string Email { get; set; }
+        [Required]
+        public string PaymentMethod { get; set; }
+        [Required]
+        public decimal TotalAmount { get; set; }
+        public ICollection<OrderDetail> OrderDetail { get; set; }
+
     }
 }

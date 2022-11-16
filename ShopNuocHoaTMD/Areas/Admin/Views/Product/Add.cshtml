@@ -63,6 +63,7 @@
                                     <ul class="nav nav-pills">
                                         <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">General Infomation</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Product Images</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Product Stock</a></li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
@@ -96,65 +97,6 @@
                                                     @Html.ValidationMessageFor(x => x.Category_Id, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <label for="exampleInputEmail1">Quanity</label>
-                                                            @Html.TextBoxFor(x => x.Quanity, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(x => x.Quanity, null, new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <label for="exampleInputEmail1">Price</label>
-                                                            @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <label for="exampleInputEmail1">Size</label>
-                                                            @Html.TextBoxFor(x => x.Size, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(x => x.Size, null, new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            @*<div class="row">
-                                                <div class="col-lg-2">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            @Html.CheckBoxFor(x => x.isHome, new { @class = "custom-control-input", @id = "customCheckbox2" })
-                                                            <label for="customCheckbox2" class="custom-control-label">Is Home</label>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            @Html.CheckBoxFor(x => x.isFeature, new { @class = "custom-control-input", @id = "customCheckbox3" })
-                                                            <label for="customCheckbox3" class="custom-control-label">Is Feature</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            @Html.CheckBoxFor(x => x.isHot, new { @class = "custom-control-input", @id = "customCheckbox4" })
-                                                            <label for="customCheckbox4" class="custom-control-label">Is Hot</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>*@
 
                                             <!-- /.post -->
                                         </div>
@@ -180,6 +122,31 @@
                                                         <tbody id="tbHtml">
                                                         </tbody>
                                                     </table>
+                                                    <input type="hidden" id="tCurrentId" value="0" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane active" id="settings">
+                                            <div class="row">
+                                                <div class="col-md-12 text-right">
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#addProductStock">Add Stock</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <table class="table table-hover" id="tbProductStock">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center">#</th>
+                                                                <th class="text-center">Volume</th>
+                                                                <th class="text-center">Quantity</th>
+                                                                <th class="text-center">Price</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbHtml">
+                                                        </tbody>
+                                                    </table>
+                                                    @*@Html.Action("AddStock", "ProductStock")*@
                                                     <input type="hidden" id="tCurrentId" value="0" />
                                                 </div>
                                             </div>

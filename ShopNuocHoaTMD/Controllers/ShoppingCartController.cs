@@ -1,4 +1,5 @@
 ﻿using ShopNuocHoaTMD.Models;
+using ShopNuocHoaTMD.Models.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,22 @@ namespace ShopNuocHoaTMD.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        private ApplicationDbContext _dbConnect = new ApplicationDbContext();
         // GET: ShoppingCart
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult CheckOut()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null)
+            {
+                ViewBag.CheckCart = cart;
+            }
+            return View();
+        }
+        public ActionResult CheckOutSucess()
         {
             return View();
         }
@@ -73,7 +84,7 @@ namespace ShopNuocHoaTMD.Controllers
                 {
                     items.ProductImg = checkProduct.ProductImage.FirstOrDefault(x => x.isDefault).Image;
                 }
-                items.Price = checkProduct.Price;
+                //items.Price = checkProduct.Price;
                 items.TotalPrice = items.Quantity * items.Price;
                 cart.AddToCart(items, quantity);
                 Session["Cart"] = cart;
@@ -110,6 +121,46 @@ namespace ShopNuocHoaTMD.Controllers
             return Json(code);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut(OrderViewModel req)
+        {
+            var code = new { Success = false, code = -1 };
+            if(ModelState.IsValid)
+            {
+                ShoppingCart cart = (ShoppingCart)Session["Cart"];
+                if (cart != null)
+                {
+                    Order order = new Order();
+                    order.CustomerName = req.CustomerName;
+                    order.Phone = req.Phone;
+                    order.Address = req.Address;
+                    cart.Items.ForEach(x => order.OrderDetail.Add(new OrderDetail
+                    {
+                        Product_Id = x.ProductId,
+                        Quanity = x.Quantity,
+                        Price = x.Price,
+                        Order_Id = order.Order_Id
+                    })); ;
+                    order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity));
+                    if (order.TotalAmount < 50)
+                        order.TotalAmount += 17.99m;
+                    order.Email = req.Email;
+                    order.PaymentMethod = req.PaymentMethod;
+                    order.OrderDate = DateTime.Now;
+                    order.CreatedBy = req.Phone;
+                    order.ModifiedBy = req.Phone;
+                    order.CreatedDate = DateTime.Now;
+                    order.ModifiedDate = DateTime.Now;
+                    _dbConnect.Order.Add(order);
+                    _dbConnect.SaveChanges();
+                    cart.ClearCart();
+                    code = new { Success = true, code = -1 };
+                    return RedirectToAction("CheckOutSucess");
+                }
+            }
+            return Json(code);
+        }
         [HttpPost]
         public ActionResult DeleteAll()
         {

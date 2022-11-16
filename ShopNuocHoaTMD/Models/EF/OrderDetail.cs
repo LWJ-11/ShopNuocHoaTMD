@@ -11,17 +11,13 @@ namespace ShopNuocHoaTMD.Models.EF
     public class OrderDetail
     {
         [Key]
-        [Column(Order = 1)]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int OrderDetail_Id { get; set; }
         public int Order_Id { get; set; }
-        [Key]
-        [Column(Order = 2)]
         public int Product_Id { get; set; }
         public int Quanity { get; set; }
-        public double TotalAmount { get; set; }
-
-        [ForeignKey("Product_Id")]
-        public Product Product { get; set; }
-        [ForeignKey("Order_Id")]
-        public Order Order { get; set; }
+        public decimal Price { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -28,11 +28,12 @@
                 <td>@item.CategoryName</td>
                 <td>$@item.Price</td>
                 <td>
-                    <input type="number" value="@item.Quantity" class="form-control" id="Quantity_@item.ProductId" style="width: 60px; text-align: center" />
+                    <input type="number" min="1" onkeydown="return false" inputmode="numeric" value="@item.Quantity" class="form-control" id="Quantity_@item.ProductId" style="width: 60px; text-align: center" />
                 </td>
+                @if (item.TotalPrice == 0) { item.TotalPrice = item.Price; }
                 <td>$ @item.TotalPrice</td>
                 <td colspan="2">
-                    <a href="#" class="btn hover-red-button btnDelete"  data-id="@item.ProductId"><i class="fa fa-times"></i></a>
+                    <a href="#" class="btn hover-red-button btnDelete" data-id="@item.ProductId"><i class="fa fa-times"></i></a>
                     <a href="#" class="btn hover-red-button btnUpdate" data-id="@item.ProductId"><i class="fa fa-refresh" aria-hidden="true"></i></a>
                 </td>
             </tr>

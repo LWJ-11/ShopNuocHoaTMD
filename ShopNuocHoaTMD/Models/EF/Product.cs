@@ -15,6 +15,7 @@ namespace ShopNuocHoaTMD.Models.EF
         {
             this.ProductImage = new HashSet<ProductImage>();
             this.OrderDetail = new HashSet<OrderDetail>();
+            this.ProductStock = new List<ProductStock>();
         }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -27,8 +28,6 @@ namespace ShopNuocHoaTMD.Models.EF
         [AllowHtml]
         [Required]
         public string Description { get; set; }
-        [Required]
-        public int Quanity { get; set; }
         public bool isHome { get; set; }
         public bool isBestSeller { get; set; }
         public bool isFeature { get; set; }
@@ -37,11 +36,10 @@ namespace ShopNuocHoaTMD.Models.EF
         public int Category_Id { get; set; }
         public int Topic_Id { get; set; }
         public string Alias { get; set; }
-        public decimal Price { get; set; }
-        public int Size { get; set; }
 
 
         public virtual ICollection<ProductImage> ProductImage { get; set; }
+        public IList<ProductStock> ProductStock { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
