@@ -53,67 +53,105 @@
             <div class="card-body p-0">
                 @if (Model != null)
                 {
-                   <div class="col-md-6">
-                       <div class="row">
-                           <div class="col-lg-3">
-                               <img class="imgproduct" data-id="@Model.Product_Id" src="@Model.ProductImage.FirstOrDefault(x=>x.isDefault).Image" width="160" />
-                           </div>
-                           <div class="col-lg-9">
-                               <div class="row">
-                                   <h3>@Model.Name</h3>
-                               </div>
-                               <div class="row">
-                                   <label for="exampleInputEmail1">Product Brand: &nbsp;</label>
-                                   <p>@Model.Brand.Name</p>
-                               </div>
-                               <div class="row">
-                                   <label for="exampleInputEmail1">Product Topic: &nbsp;</label>
-                                   <p>@Model.Topic.Title</p>
-                               </div>
-                               <div class="row">
-                                   <label for="exampleInputEmail1">Product Category: &nbsp;</label>
-                                   <p>@Model.Category.Name</p>
-                               </div>
-                           </div>
-                       </div>
-                       <br />
-                       <div class="row">
-                           <div class="col-lg-6">
-                               <label for="exampleInputEmail1">Description</label>
-                               <p>@Model.Description</p>
-                           </div>
-                           <div class="col-lg-2"></div>
-                           <div class="col-lg-4">
-                               <label>Stock</label>
-                               <table class="table table-condensed table-responsive">
-                                   @if (Model.ProductStock != null && Model.ProductStock.Any())
-                                   {
-                                       <tr>
-                                           <th>Volume</th>
-                                           <th>Quantity</th>
-                                           <th>Price</th>
-                                       </tr>
-                                       foreach (var item in Model.ProductStock)
-                                       {
-                                           <tr id="trow_@item.Stock_Id" class="text-center">
-                                               <td>@item.Volume ml</td>
-                                               <td>@item.Quantity</td>
-                                               <td>$@item.Price</td>
-                                               <td>
-                                                   <a href="#" data-id="@item.Stock_Id" class="btn btn-sm btn-danger btnDelete">Delete</a>
-                                               </td>
-                                           </tr>
-                                       }
-                                   }
-                                   else
-                                   {
-                                       <h5>This product hasn't has stock yet.<br /> Please add product stock</h5>
-                                   }
-                               </table>
-                               <a href=" @Url.Action("AddStock", "ProductStock", new { id = Model.Product_Id}, null)" class="btn btn-primary">Add Stock</a>
-                           </div>
-                       </div>
-                   </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <img class="imgproduct" data-id="@Model.Product_Id" src="@Model.ProductImage.FirstOrDefault(x=>x.isDefault).Image" width="160" />
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <h3>@Model.Name</h3>
+                                    </div>
+                                    <div class="row">
+                                        <label for="exampleInputEmail1">Product Brand: &nbsp;</label>
+                                        <p>@Model.Brand.Name</p>
+                                    </div>
+                                    <div class="row">
+                                        <label for="exampleInputEmail1">Product Topic: &nbsp;</label>
+                                        <p>@Model.Topic.Title</p>
+                                    </div>
+                                    <div class="row">
+                                        <label for="exampleInputEmail1">Product Category: &nbsp;</label>
+                                        <p>@Model.Category.Name</p>
+                                    </div>
+                                    <div class="row">
+                                        <label for="exampleInputEmail1">Create date: &nbsp;</label>
+                                        <p>@Model.CreatedDate</p>
+                                    </div>
+                                    <div class="row">
+                                        <label for="exampleInputEmail1">Modified date: &nbsp;</label>
+                                        <p>@Model.ModifiedDate</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label for="exampleInputEmail1">Description</label>
+                                    <p>@Model.Description</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                @{ 
+                                    var strCheckHome = Model.isHome ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
+                                    var strCheckHot = Model.isHot ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
+                                    var strCheckBestSeller = Model.isBestSeller ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
+                                }
+                                <label>Display</label>
+                                <table class="table table-condensed table-responsive">
+                                    <tr>
+                                        <th>IsHome</th>
+                                        <th>IsHot</th>
+                                        <th>IsBestSeller</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            <a href="#" data-id="@Model.Product_Id" class="btnHome">@Html.Raw(strCheckHome)</a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="#" data-id="@Model.Product_Id" class="btnHot">@Html.Raw(strCheckHot)</a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="#" data-id="@Model.Product_Id" class="btnBestSeller">@Html.Raw(strCheckBestSeller)</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <label>Stock</label>
+                                <br/>
+                                <table class="table table-condensed table-responsive">
+                                    @if (Model.ProductStock != null && Model.ProductStock.Any())
+                                    {
+                                        <tr>
+                                            <th>Volume</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                        foreach (var item in Model.ProductStock)
+                                        {
+                                            <tr id="trow_@item.Stock_Id" class="text-center">
+                                                <td>@item.Volume ml</td>
+                                                <td>@item.Quantity</td>
+                                                <td>$@item.Price</td>
+                                                <td>
+                                                    <a href="#" data-id="@item.Stock_Id" class="btn btn-sm btn-danger btnDelete">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>This product hasn't has stock yet. Please add product stock</tr>
+                                    }
+                                </table>
+                                <a href=" @Url.Action("AddStock", "ProductStock", new { id = Model.Product_Id}, null)" class="btn btn-primary">Add Stock</a>
+                            </div>
+                        </div>
+                    </div>
                 }
 
             </div>
@@ -142,6 +180,66 @@
                             }
                         })
                     }
+                });
+                $('body').on('click', '.btnHome', function (e) {
+                    e.preventDefault();
+                    var btn = $(this);
+                    var id = btn.data("id");
+                    $.ajax({
+                        url: '/admin/product/isHome',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                if (rs.isHome) {
+                                    btn.html("<i class='fa fa-check text-success'></i>");
+                                } else {
+                                    btn.html("<i class ='fa fa-times text-danger'></i>");
+                                }
+
+                            }
+                        }
+                    });
+                });
+                $('body').on('click', '.btnHot', function (e) {
+                    e.preventDefault();
+                    var btn = $(this);
+                    var id = btn.data("id");
+                    $.ajax({
+                        url: '/admin/product/isHot',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                if (rs.isHot) {
+                                    btn.html("<i class='fa fa-check text-success'></i>");
+                                } else {
+                                    btn.html("<i class ='fa fa-times text-danger'></i>");
+                                }
+
+                            }
+                        }
+                    });
+                });
+                $('body').on('click', '.btnBestSeller', function (e) {
+                    e.preventDefault();
+                    var btn = $(this);
+                    var id = btn.data("id");
+                    $.ajax({
+                        url: '/admin/product/isBestSeller',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                if (rs.isBestSeller) {
+                                    btn.html("<i class='fa fa-check text-success'></i>");
+                                } else {
+                                    btn.html("<i class ='fa fa-times text-danger'></i>");
+                                }
+
+                            }
+                        }
+                    });
                 });
             });
     </script>

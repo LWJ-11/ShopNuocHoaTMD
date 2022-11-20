@@ -16,8 +16,7 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index(string Searchtext, int? page)
         {
-
-            IEnumerable<Product> items = _dbConnect.Product.OrderByDescending(x => x.Product_Id);
+            IEnumerable<Product> items = _dbConnect.Product.OrderByDescending(x => x.Product_Id).Include(s => s.ProductStock);
             var pageSize = 6;
             if (page == null)
             {

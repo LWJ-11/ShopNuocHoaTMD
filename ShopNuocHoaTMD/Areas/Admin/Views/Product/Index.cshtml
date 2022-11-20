@@ -90,11 +90,7 @@
                         <th>Topic</th>
                         <th>Brand</th>
                         <th>Stock</th>
-                        <th>Created date</th>
                         <th>Modified date</th>
-                        <th>Home</th>
-                        <th>Hot</th>
-                        <th>BSeller</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -106,29 +102,15 @@
                         var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
-                            var strCheckHome = item.isHome ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
-                            var strCheckHot = item.isHot ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
-                            var strCheckBestSeller = item.isBestSeller ? "<i class ='fa fa-check text-success'></i>" : "<i class ='fa fa-times text-danger'></i>";
-                            <tr id="trow_@item.Product_Id"  class="text-center">
+                            var style = item.ProductStock.Count() == 0 ? "background-color:#f5938c" : "background-color:#bfd8ff";
+                            <tr id="trow_@item.Product_Id"  class="text-center" >
                                 <td>@i</td>
                                 <td><img class="imgproduct" data-id="@item.Product_Id" src="@item.ProductImage.FirstOrDefault(x=>x.isDefault).Image" width="80" /></td>
                                 <td>@item.Name</td>
                                 <td>@item.Topic.Title</td>
                                 <td>@item.Brand.Name</td>
-                                <td>@item.ProductStock.Count()</td>
-                                @*<td>$@item.Price</td>
-                                <td>@item.Size ml</td>*@
-                                <td>@item.CreatedDate.ToString("dd/MM/yyy")</td>
+                                <td style="@style">@item.ProductStock.Count()</td>
                                 <td>@item.ModifiedDate.ToString("dd/MM/yyy")</td>
-                                <td class="text-center">
-                                    <a href="#" data-id="@item.Product_Id" class="btnHome">@Html.Raw(strCheckHome)</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="#" data-id="@item.Product_Id" class="btnHot">@Html.Raw(strCheckHot)</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="#" data-id="@item.Product_Id" class="btnBestSeller">@Html.Raw(strCheckBestSeller)</a>
-                                </td>
                                 <td>
                                     <a href="/Admin/Product/Edit/@item.Product_Id" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="/Admin/Product/Detail/@item.Product_Id" class="btn btn-sm btn-primary">Detail</a>
