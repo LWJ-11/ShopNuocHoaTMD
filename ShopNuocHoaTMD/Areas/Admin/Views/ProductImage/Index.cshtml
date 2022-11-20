@@ -4,14 +4,15 @@
     Layout = "~/Areas/Admin/Views/Shared/_EmptyLayout.cshtml";
 }
 <style>
-    .glImage{
-        margin:0;
-        padding:0;
+    .glImage {
+        margin: 0;
+        padding: 0;
     }
-    .glImage li{
-        display: inline-block;
-        margin:20px;
-    }
+
+        .glImage li {
+            display: inline-block;
+            margin: 20px;
+        }
 </style>
 <section class="content">
     <div class="card">
@@ -20,36 +21,36 @@
                 <button type="button" class="btn btn-danger">
                     Delete All
                 </button>
-                <button type="button" class="btn btn-success" value="Choose File" onclick="BrowseServer()" >
+                <button type="button" class="btn btn-success" value="Choose File" onclick="BrowseServer()">
                     Add Image
                 </button>
-                
+
             </div>
         </div>
         <div class="card-body">
             <ul class="glImage">
-                @if(Model != null)
-            {
-                foreach(var item in Model)
+                @if (Model != null)
                 {
-                    <li id="trow_@item.Image_Id">
-                        <div>
-                            <img src="@item.Image" width="200" height="200" />
-                            <div class="box-btn">
-                                <a href="#" data-id="@item.Image_Id" class="btn btn-sm btn-danger btnDelete"><i class="fa fa-trash"></i></a>
-                                @if (item.isDefault)
-                                {
-                                    <a href="#" data-id="@item.Image_Id" class="btn btn-sm btn-primary btn-Default"><i class="fa fa-check"></i></a>
-                                }
-                                else
-                                {
-                                    <a href="#" data-id="@item.Image_Id" class="btn btn-sm btn-primary btn-Default"><i class="fa fa-times"></i></a>
-                                }
+                    foreach (var item in Model)
+                    {
+                        <li id="trow_@item.Image_Id">
+                            <div>
+                                <img src="@item.Image" width="200" height="200" />
+                                <div class="box-btn">
+                                    <a href="#" data-id="@item.Image_Id" class="btn btn-sm btn-danger btnDelete"><i class="fa fa-trash"></i></a>
+                                    @if (item.isDefault)
+                                    {
+                                        <a href="#" data-id="@item.Image_Id" class="btn btn-sm btn-primary btn-Default"><i class="fa fa-check"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" data-id="@item.Image_Id" class="btn btn-sm btn-primary btn-Default"><i class="fa fa-times"></i></a>
+                                    }
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    }
                 }
-            }
             </ul>
         </div>
     </div>
@@ -102,4 +103,3 @@
 
     });
 </script>
-

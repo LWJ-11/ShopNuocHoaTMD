@@ -1,16 +1,7 @@
 ﻿using ShopNuocHoaTMD.Models;
 using ShopNuocHoaTMD.Models.EF;
-using System;
-using System.Collections.Generic;
-using ShopNuocHoaTMD.Models;
-using ShopNuocHoaTMD.Models.EF;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
-using System.Security.Policy;
 
 namespace ShopNuocHoaTMD.Areas.Admin.Controllers
 {
@@ -18,32 +9,47 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
     {
         private ApplicationDbContext _dbConnect = new ApplicationDbContext();
         // GET: Admin/ProductStock
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            ViewBag.ProductId = id;
-            var items = _dbConnect.ProductStock.Where(x => x.Product_Id == id).ToList();
-            return View(items);
-        }
-        public ActionResult AddStock(int volume, int quantity, decimal price, int productId)
-        {
-            _dbConnect.ProductStock.Add(new ProductStock
-            {
-                Product_Id = productId,
-                Volume = volume,
-                Quantity = quantity,
-                Price = price,
 
-            });
-            _dbConnect.SaveChanges();
-            return Json(new { Success = true });
+            return View();
+        }
+        public ActionResult AddStock(int id)
+        {
+            Product product = _dbConnect.Product.Where(x => x.Product_Id == id).Single();
+            if(product == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.P_Id = product.Product_Id;
+            ViewBag.ProductName = product.Name;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddStock([Bind(Include ="Id, Volume, Quantity, Price, Product_Id")] ProductStock stock, string ProductName)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbConnect.ProductStock.Add(stock); 
+                _dbConnect.SaveChanges();
+                return RedirectToAction("Detail", "Product", new {id = stock.Product_Id});
+            }
+            ViewBag.P_Id = stock.Product_Id;
+            ViewBag.ProductName = ProductName;
+            return View(stock);
         }
         [HttpPost]
         public ActionResult Delete(int id)
         {
             var item = _dbConnect.ProductStock.Find(id);
-            _dbConnect.ProductStock.Remove(item);
-            _dbConnect.SaveChanges();
-            return Json(new { success = true });
+            if (item != null)
+            {
+                _dbConnect.ProductStock.Remove(item);
+                _dbConnect.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }

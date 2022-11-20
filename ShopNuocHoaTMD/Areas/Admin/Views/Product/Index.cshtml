@@ -89,8 +89,7 @@
                         <th>Name</th>
                         <th>Topic</th>
                         <th>Brand</th>
-                        <th>Price</th>
-                        <th>Size</th>
+                        <th>Stock</th>
                         <th>Created date</th>
                         <th>Modified date</th>
                         <th>Home</th>
@@ -116,6 +115,7 @@
                                 <td>@item.Name</td>
                                 <td>@item.Topic.Title</td>
                                 <td>@item.Brand.Name</td>
+                                <td>@item.ProductStock.Count()</td>
                                 @*<td>$@item.Price</td>
                                 <td>@item.Size ml</td>*@
                                 <td>@item.CreatedDate.ToString("dd/MM/yyy")</td>
@@ -131,6 +131,7 @@
                                 </td>
                                 <td>
                                     <a href="/Admin/Product/Edit/@item.Product_Id" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="/Admin/Product/Detail/@item.Product_Id" class="btn btn-sm btn-primary">Detail</a>
                                     <a href="#" data-id="@item.Product_Id" class="btn btn-sm btn-danger btnDelete">Delete</a>
                                 </td>
                             </tr>
@@ -198,9 +199,10 @@
             });
             $('body').on("click", ".imgproduct", function () {
                 var proid = $(this).attr("data-id");
+                console.log(proid);
                 $("#dialog #myIFrame").attr("src", "/admin/ProductImage/Index?id=" + proid);
                 $('#dialog').dialog('open');
-                return false;
+                return false;   
             });
             $('body').on('click', '.btnHome', function (e) {
                 e.preventDefault();

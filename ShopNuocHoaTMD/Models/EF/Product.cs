@@ -39,7 +39,7 @@ namespace ShopNuocHoaTMD.Models.EF
 
 
         public virtual ICollection<ProductImage> ProductImage { get; set; }
-        public IList<ProductStock> ProductStock { get; set; }
+        public ICollection<ProductStock> ProductStock { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }

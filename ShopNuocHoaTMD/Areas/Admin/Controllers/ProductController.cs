@@ -3,6 +3,7 @@ using ShopNuocHoaTMD.Models;
 using ShopNuocHoaTMD.Models.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,7 +43,8 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Product model, List<string> Images, List<int> rDefault)
+        public ActionResult Add(Product model, List<string> Images, List<int> rDefault, 
+            List<int> Quantity, List<int> Volume, List<decimal> Price)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +93,16 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
             ViewBag.Category = new SelectList(_dbConnect.Category.ToList(), "Category_Id", "Name");
             var item = _dbConnect.Product.Find(id);
             return View(item);
+        }
+        public ActionResult Detail(int id)
+        {
+            ViewBag.Topic = new SelectList(_dbConnect.Topic.ToList(), "Topic_Id", "Title");
+            ViewBag.Brand = new SelectList(_dbConnect.Brand.ToList(), "Brand_Id", "Name");
+            ViewBag.Category = new SelectList(_dbConnect.Category.ToList(), "Category_Id", "Name");
+            var product = _dbConnect.Product
+                    .Include(s => s.ProductStock)
+                    .SingleOrDefault(p => p.Product_Id == id);
+            return View(product);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

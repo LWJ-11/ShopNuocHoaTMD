@@ -242,6 +242,10 @@
     <Compile Include="Migrations\202211151334047_update_productStock.designer.cs">
       <DependentUpon>202211151334047_update_productStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211170700134_update-stock.cs" />
+    <Compile Include="Migrations\202211170700134_update-stock.designer.cs">
+      <DependentUpon>202211170700134_update-stock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Common\Filter.cs" />
@@ -3009,11 +3013,12 @@
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductImage\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EmptyLayout.cshtml" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <Content Include="Areas\Admin\Views\ProductStock\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductStock\AddStock.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductImage\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3136,6 +3141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211151334047_update_productStock.resx">
       <DependentUpon>202211151334047_update_productStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211170700134_update-stock.resx">
+      <DependentUpon>202211170700134_update-stock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
