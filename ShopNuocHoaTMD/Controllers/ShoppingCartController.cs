@@ -59,7 +59,7 @@ namespace ShopNuocHoaTMD.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddtoCart(int id, int quantity)
+        public ActionResult AddtoCart(int id, int quantity, decimal price)
         {
             var code = new { Success = false, msg = "", code = -1, count = 0};
             var db_Connect = new ApplicationDbContext();
@@ -84,7 +84,7 @@ namespace ShopNuocHoaTMD.Controllers
                 {
                     items.ProductImg = checkProduct.ProductImage.FirstOrDefault(x => x.isDefault).Image;
                 }
-                //items.Price = checkProduct.Price;
+                items.Price = price;
                 items.TotalPrice = items.Quantity * items.Price;
                 cart.AddToCart(items, quantity);
                 Session["Cart"] = cart;

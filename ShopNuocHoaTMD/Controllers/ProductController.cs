@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace ShopNuocHoaTMD.Controllers
 {
@@ -13,7 +14,7 @@ namespace ShopNuocHoaTMD.Controllers
         // GET: Product
         public ActionResult Index(int? id)
         {
-            var items = _dbConnect.Product.ToList();
+            var items = _dbConnect.Product.Include(s => s.ProductStock).ToList();
             if(id != null)
             {
                 items = items.Where(x => x.Topic_Id == id).ToList();
@@ -80,7 +81,9 @@ namespace ShopNuocHoaTMD.Controllers
         }
         public ActionResult Detail(string alias, int? id)
         {
-            var item = _dbConnect.Product.Find(id);
+            var item = _dbConnect.Product
+                    .Include(s => s.ProductStock)
+                    .SingleOrDefault(p => p.Product_Id == id);
             return View(item);
         }
 

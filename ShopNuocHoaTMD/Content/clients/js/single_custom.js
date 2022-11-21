@@ -217,7 +217,9 @@ jQuery(document).ready(function($)
 			plus.on('click', function()
 			{
 				var x = parseInt(value.text());
-				value.text(x + 1);
+				if (x < 6) {
+					value.text(x + 1);
+				}
 			});
 
 			minus.on('click', function()

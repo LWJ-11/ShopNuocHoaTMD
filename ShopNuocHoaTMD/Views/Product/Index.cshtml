@@ -154,11 +154,13 @@
                                                 @*<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>*@
                                             <div class="product_info">
                                                 <h6 class="product_name"><a href="/detail/@item.Alias-p@(item.Product_Id)">@item.Name</a></h6>
-                                                @{
-                                                    foreach (var stock in item.ProductStock)
-                                                    {
-                                                        <div class="product_price">$@stock.Price</div>
-                                                    }
+                                                @if (item.ProductStock.Count() > 1)
+                                                {
+                                                    <div class="product_price">$@item.ProductStock.FirstOrDefault().Price - @item.ProductStock.LastOrDefault().Price</div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="product_price">$@item.ProductStock.FirstOrDefault().Price</div>
                                                 }
                                             </div>
                                             </div>

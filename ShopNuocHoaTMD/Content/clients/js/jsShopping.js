@@ -4,16 +4,21 @@
         e.preventDefault();
         var id = $(this).data('id');
         var quatity = 1;
+        var price = 0;
         var tQuantity = $('#quantity_value').text();
+        var tPrice = $('#price_value').text();
         if (tQuantity != '') {
 
             quatity = parseInt(tQuantity);
+        }
+        if (tPrice != '') {
+            price = parseInt(tPrice);
         }
 
         $.ajax({
             url: '/shoppingcart/addtocart',
             type: 'POST',
-            data: { id: id, quantity: quatity },
+            data: { id: id, quantity: quatity, price: price },
             success: function (rs) {
                 if (rs.Success) {
                     $('#checkout_items').html(rs.count);

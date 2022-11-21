@@ -6,6 +6,9 @@
 <link rel="stylesheet" type="text/css" href="~/Content/clients/styles/single_styles.css">
 <link rel="stylesheet" type="text/css" href="~/Content/clients/styles/single_responsive.css">
 
+<style>
+   
+</style>
 @if (Model != null)
 {
     <div class="container single_product_container">
@@ -65,14 +68,31 @@
             <div class="col-lg-5">
                 <div class="product_details">
                     <div class="product_details_title">
+                        <h3 class="font-weight-light">@Model.Brand.Name</h3>
                         <h2>@Model.Name</h2>
-                        <p>@Model.Category.Name</p>
+                        <h5>@Model.Category.Name</h5>
                     </div>
-                    <div class="free_delivery d-flex flex-row align-items-center justify-content-center" style="background-color:white">
-                        <span class="ti-truck"></span><span></span>
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center mt-3">
+                        <h3>$<span id="price_value">@Model.ProductStock.First().Price</span></h3>
                     </div>
-                    <div class="d-flex flex-column flex-sm-row align-items-sm-center">
-                        <span>In stock: <span class="bold">@*@Model.Quanity*@</span></span>
+                    <div class="d-flex flex-row align-items-center">
+                        @foreach (var item in Model.ProductStock)
+                        {
+                            if (Model.ProductStock.First() == item)
+                            {
+                                <label class="cirle-size volume">
+                                    <input type="radio" name="volume" checked value="@item.Price" style="display:none"/>
+                                    <span class="text-center p-auto font-weight-normal">@item.Volume ML</span>
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="cirle-size volume">
+                                    <input type="radio" name="volume" value="@item.Price" style="display:none" />
+                                    <span class="text-center p-auto font-weight-normal">@item.Volume ML</span>
+                                </label>
+                            }
+                        }
                     </div>
                     <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                         <span>Quantity:</span>
@@ -81,10 +101,10 @@
                             <span id="quantity_value">1</span>
                             <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column flex-sm-row align-items-sm-center">
-                        <div class="red_button" style="width:445px; margin-left:0px;"><a href="#"class="btnAddToCart" data-id="@Model.Product_Id">add to cart</a></div>
                         <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+                    </div>
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center mt-3">
+                        <div class="red_button" style="width:286px; margin-left:0px;"><a href="#"class="btnAddToCart" data-id="@Model.Product_Id">add to cart</a></div>
                     </div>
                 </div>
             </div>
@@ -316,4 +336,15 @@
 @section scripts{
     <script src="~/Content/clients/js/jquery-3.2.1.min.js"></script>
     <script src="~/Content/clients/js/single_custom.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('body').on('click', '.volume', function () {
+                var radioValue = $('input[name=volume]:checked').val()
+                if (radioValue) {
+                    $('#price_value').text(`${radioValue}`);
+                }
+            });
+        });
+    </script>
 }

@@ -1,5 +1,12 @@
 ﻿@model IEnumerable<ShopNuocHoaTMD.Models.ShoppingCartItem>
 
+<style>
+    .disable-select {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+    }
+</style>
 @if (Model != null && Model.Any())
 {
     var i = 0;
@@ -28,7 +35,7 @@
                 <td>@item.CategoryName</td>
                 <td>$@item.Price</td>
                 <td>
-                    <input type="number" min="1" onkeydown="return false" inputmode="numeric" value="@item.Quantity" class="form-control" id="Quantity_@item.ProductId" style="width: 60px; text-align: center" />
+                    <input type="number" min="1" max="6" onkeydown="return false" inputmode="numeric" value="@item.Quantity" class="form-control disable-select" id="Quantity_@item.ProductId" style="width: 60px; text-align: center" />
                 </td>
                 @if (item.TotalPrice == 0) { item.TotalPrice = item.Price; }
                 <td>$ @item.TotalPrice</td>

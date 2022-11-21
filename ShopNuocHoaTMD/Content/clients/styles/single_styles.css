@@ -919,6 +919,32 @@ section
 /*********************************
 5. Single Product Section
 *********************************/
+.border-size {
+	border: 2px solid !important;
+}
+
+.cirle-size {
+	width: 75px;
+	height: 75px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid;
+	color: black;
+	border-radius: 50%;
+	margin: 10px;
+}
+
+.cirle.cirle-size:hover, .cirle-size-selected {
+	border-width: 3px;
+	transition: border-width 0.2s ease;
+}
+
+.p-auto {
+	padding: 12px;
+}
 
 .single_product_container
 {
