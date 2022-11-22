@@ -7,7 +7,9 @@
 <link rel="stylesheet" type="text/css" href="~/Content/clients/styles/single_responsive.css">
 
 <style>
-   
+    .active {
+        border-width: 3px !important;
+    }
 </style>
 @if (Model != null)
 {
@@ -80,15 +82,17 @@
                         {
                             if (Model.ProductStock.First() == item)
                             {
+
                                 <label class="cirle-size volume">
-                                    <input type="radio" name="volume" checked value="@item.Price" style="display:none"/>
+                                    <input type="radio" name="volume" id="volume-input-@item.Price" checked value="@item.Price" style="display:none" />
                                     <span class="text-center p-auto font-weight-normal">@item.Volume ML</span>
                                 </label>
                             }
                             else
                             {
+
                                 <label class="cirle-size volume">
-                                    <input type="radio" name="volume" value="@item.Price" style="display:none" />
+                                    <input type="radio" name="volume" id="volume-input-@item.Price" value="@item.Price" style="display:none" />
                                     <span class="text-center p-auto font-weight-normal">@item.Volume ML</span>
                                 </label>
                             }
@@ -338,13 +342,32 @@
     <script src="~/Content/clients/js/single_custom.js"></script>
     <script>
         $(document).ready(function () {
-
             $('body').on('click', '.volume', function () {
                 var radioValue = $('input[name=volume]:checked').val()
                 if (radioValue) {
                     $('#price_value').text(`${radioValue}`);
                 }
             });
+            // apply style on change
+            $('[type=radio]').on('change', function () {
+                var elem = $(this);
+                checkinput(elem);
+            });
+
+            // apply style on load
+            var elem = $('[type=radio]:checked');
+            checkinput(elem);
         });
+        function checkinput(elem) {
+            var parent = elem.parent(),
+                checked = elem.is(':checked');
+
+            $('.volume').removeClass('active');
+
+            if (checked) {
+                parent.addClass('active');
+            }
+        }
+
     </script>
 }

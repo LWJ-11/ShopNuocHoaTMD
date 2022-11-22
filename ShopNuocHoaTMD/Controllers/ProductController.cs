@@ -79,6 +79,13 @@ namespace ShopNuocHoaTMD.Controllers
             var items = _dbConnect.Product.Include(s => s.ProductStock).Where(x => x.isHot).Take(10).ToList();
             return PartialView(items);
         }
+        public ActionResult QuickView(int? id)
+        {
+            var item = _dbConnect.Product
+                    .Include(s => s.ProductStock)
+                    .SingleOrDefault(p => p.Product_Id == id);
+            return PartialView(item);
+        }
         public ActionResult Detail(string alias, int? id)
         {
             var item = _dbConnect.Product
