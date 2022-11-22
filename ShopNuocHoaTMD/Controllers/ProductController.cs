@@ -23,7 +23,7 @@ namespace ShopNuocHoaTMD.Controllers
         }
         public ActionResult IndexBrand(int? id)
         {
-            var items = _dbConnect.Product.ToList();
+            var items = _dbConnect.Product.Include(s => s.ProductStock).ToList();
             if (id != null)
             {
                 items = items.Where(x => x.Brand_Id == id).ToList();
@@ -32,7 +32,7 @@ namespace ShopNuocHoaTMD.Controllers
         }
         public ActionResult IndexSearch(string Searchtext)
         {
-            var items = _dbConnect.Product.ToList();
+            var items = _dbConnect.Product.Include(s => s.ProductStock).ToList();
             if (Searchtext != null)
             {
                 items = items.Where(x => x.Alias.Contains(Searchtext) || x.Name.Contains(Searchtext)).ToList();
@@ -41,7 +41,7 @@ namespace ShopNuocHoaTMD.Controllers
         }
         public ActionResult ProductTopic(string alias, int? id)
         {
-            var items = _dbConnect.Product.ToList();
+            var items = _dbConnect.Product.Include(s => s.ProductStock).ToList();
             if (id >0)
             {
                 items = items.Where(x => x.Topic_Id == id).ToList();
@@ -56,7 +56,7 @@ namespace ShopNuocHoaTMD.Controllers
         }
         public ActionResult ProductBrand(string alias, int? id)
         {
-            var items = _dbConnect.Product.ToList();
+            var items = _dbConnect.Product.Include(s => s.ProductStock).ToList();
             if (id > 0)
             {
                 items = items.Where(x => x.Brand_Id == id).ToList();
@@ -71,12 +71,12 @@ namespace ShopNuocHoaTMD.Controllers
         }
         public ActionResult Partial_ItemsByTopicID()
         {
-            var items = _dbConnect.Product.Where(x => x.isHome).Take(15).ToList();
+            var items = _dbConnect.Product.Include(s => s.ProductStock).Where(x => x.isHome).Take(15).ToList();
             return PartialView(items);
         }
         public ActionResult Partial_ProductBestSeller()
         {
-            var items = _dbConnect.Product.Where(x => x.isHot).Take(10).ToList();
+            var items = _dbConnect.Product.Include(s => s.ProductStock).Where(x => x.isHot).Take(10).ToList();
             return PartialView(items);
         }
         public ActionResult Detail(string alias, int? id)

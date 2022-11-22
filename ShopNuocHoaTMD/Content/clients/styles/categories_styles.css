@@ -815,8 +815,7 @@ section
 {
 	color: #fe4c50;
 }
-.red_button
-{
+.red_button {
 	display: -webkit-inline-box;
 	display: -moz-inline-box;
 	display: -ms-inline-flexbox;
@@ -834,6 +833,7 @@ section
 	-ms-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
+	visibility: hidden;
 }
 .red_button:hover
 {
@@ -1329,6 +1329,7 @@ section
 	box-shadow: 0 25px 29px rgba(63, 78, 100, 0.15);
 	border: solid 2px rgba(235,235,235,1);
 }
+.product-item 
 .product
 {
 	width: 100%;

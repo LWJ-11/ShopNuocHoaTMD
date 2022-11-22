@@ -142,7 +142,7 @@
                                         {
                                             strImg = img.Image;
                                         }
-                                        <div class="product-item @item.Brand.Alias">
+                                        <div class="product-item @item.Topic.Alias">
                                             <div class="product discount product_filter">
                                                 <div class="product_image">
                                                     <a href="/detail/@item.Alias-p@(item.Product_Id)">
@@ -152,8 +152,17 @@
                                                 <div class="favorite favorite_left"></div>
                                                 @*<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>*@
                                                 <div class="product_info">
+                                                    <p>@item.Brand.Name</p>
                                                     <h6 class="product_name"><a href="/detail/@item.Alias-p@(item.Product_Id)">@item.Name</a></h6>
-                                                    <div class="product_price">$@item.Price</div>
+                                                    <p style="font-size:13px !important">@item.Category.Name</p>
+                                                    @if (item.ProductStock.Count() > 1)
+                                                    {
+                                                        <div class="product_price">$@item.ProductStock.FirstOrDefault().Price - @item.ProductStock.LastOrDefault().Price</div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="product_price">$@item.ProductStock.FirstOrDefault().Price</div>
+                                                    }
                                                 </div>
                                             </div>
                                             <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Product_Id">add to cart</a></div>
