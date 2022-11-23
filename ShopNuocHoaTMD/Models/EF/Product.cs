@@ -28,6 +28,7 @@ namespace ShopNuocHoaTMD.Models.EF
         [AllowHtml]
         [Required]
         public string Description { get; set; }
+        public int ViewCount { get; set; }
         public bool isHome { get; set; }
         public bool isBestSeller { get; set; }
         public bool isFeature { get; set; }

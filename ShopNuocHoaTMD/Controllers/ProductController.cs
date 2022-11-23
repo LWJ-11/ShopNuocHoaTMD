@@ -91,6 +91,13 @@ namespace ShopNuocHoaTMD.Controllers
             var item = _dbConnect.Product
                     .Include(s => s.ProductStock)
                     .SingleOrDefault(p => p.Product_Id == id);
+            if (item != null)
+            {
+                _dbConnect.Product.Attach(item);
+                item.ViewCount = item.ViewCount + 1;
+                _dbConnect.Entry(item).Property(x => x.ViewCount).IsModified = true;
+                _dbConnect.SaveChanges();
+            }
             return View(item);
         }
 

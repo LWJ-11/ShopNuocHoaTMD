@@ -80,17 +80,17 @@
                                     </li>
                                 </ul>
                                 @*<div class="pages d-flex flex-row align-items-center">
-                                        <div class="page_current">
-                                            <span>1</span>
-                                            <ul class="page_selection">
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="page_total"><span>of</span> 3</div>
-                                        <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
-                                    </div>*@
+                <div class="page_current">
+                    <span>1</span>
+                    <ul class="page_selection">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                    </ul>
+                </div>
+                <div class="page_total"><span>of</span> 3</div>
+                <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+            </div>*@
 
                             </div>
 
@@ -108,15 +108,14 @@
                                             strImg = img.Image;
                                         }
                                         <div class="product-item @item.Topic.Alias">
-                                            <div class="product discount product_filter">
+                                            <div class="product">
                                                 <div class="product_image">
                                                     <a href="/detail/@item.Alias-p@(item.Product_Id)">
                                                         <img src="@strImg" alt="@item.Name">
                                                     </a>
                                                 </div>
-                                                <div class="favorite favorite_left"></div>
-                                                @*<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>*@
-                                                <div class="product_info">
+                                                <div class="red_button add_to_cart_button"><a href="/detail/@item.Alias-p@(item.Product_Id)" @*class="btnAddToCart" data-id="@item.Product_Id"*@>view</a></div>
+                                                <div class="product_info mt-2">
                                                     <p>@item.Brand.Name</p>
                                                     <h6 class="product_name"><a href="/detail/@item.Alias-p@(item.Product_Id)">@item.Name</a></h6>
                                                     <p style="font-size:13px !important">@item.Category.Name</p>
@@ -130,7 +129,6 @@
                                                     }
                                                 </div>
                                             </div>
-                                            <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Product_Id">add to cart</a></div>
                                         </div>
                                     }
                                 }
@@ -156,18 +154,18 @@
                                     </li>
                                 </ul>
                                 @*<span class="showing_results">Showing 1–3 of 12 results</span>
-                                    <div class="pages d-flex flex-row align-items-center">
-                                        <div class="page_current">
-                                            <span>1</span>
-                                            <ul class="page_selection">
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="page_total"><span>of</span> 3</div>
-                                        <div id="next_page_1" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
-                                    </div>*@
+            <div class="pages d-flex flex-row align-items-center">
+                <div class="page_current">
+                    <span>1</span>
+                    <ul class="page_selection">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                    </ul>
+                </div>
+                <div class="page_total"><span>of</span> 3</div>
+                <div id="next_page_1" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+            </div>*@
 
                             </div>
 

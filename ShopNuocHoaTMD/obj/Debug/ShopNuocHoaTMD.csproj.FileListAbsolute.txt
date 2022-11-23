@@ -512,3 +512,8 @@ D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.remo
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.updateproductstock.resources
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.update_productStock.resources
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.updatestock.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.createStatisticDB.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.updateStatistic.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.updateStatistic1.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\Dapper.dll
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\Dapper.xml

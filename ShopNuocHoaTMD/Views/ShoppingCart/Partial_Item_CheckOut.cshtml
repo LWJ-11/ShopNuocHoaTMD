@@ -11,14 +11,14 @@
         tongtien += item.TotalPrice;
         <div class="row text-left">
             <div class="col-3" style="padding-left: 0px !important; padding-right:0px !important"><img width="50" src="@item.ProductImg" alt="@item.ProductName" /></div>
-            <div class="col-md-6">@item.ProductName x @item.Quantity</div>
-            <div class="col-3">$@(item.Price*item.Quantity)</div>
+            <div class="col-md-6">@item.ProductName @item.Stock<span>ML</span> x @item.Quantity</div>
+            <div class="col-3">$@((item.Price*item.Quantity).ToString("0.00"))</div>
 
         </div>
     }
     <div class="row mt-4">
         <div class="col-md-8 font-weight-bold">SubTotal:</div>
-        <div class="col-md-4 font-weight-bold">$@tongtien</div>
+        <div class="col-md-4 font-weight-bold">$@tongtien.ToString("0.00")</div>
     </div>
     @if (tongtien < 50)
     {
@@ -26,7 +26,7 @@
     }
     else
     {
-        shippingfee = 0;
+        shippingfee = 0.00m;
     }
     @{tongtien += shippingfee;}
     <div class="row mt-4">

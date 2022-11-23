@@ -91,6 +91,7 @@
                         <th>Brand</th>
                         <th>Stock</th>
                         <th>Modified date</th>
+                        <th>Views</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -111,6 +112,7 @@
                                 <td>@item.Brand.Name</td>
                                 <td style="@style">@item.ProductStock.Count()</td>
                                 <td>@item.ModifiedDate.ToString("dd/MM/yyy")</td>
+                                <td> @item.ViewCount</td>
                                 <td>
                                     <a href="/Admin/Product/Edit/@item.Product_Id" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="/Admin/Product/Detail/@item.Product_Id" class="btn btn-sm btn-primary">Detail</a>

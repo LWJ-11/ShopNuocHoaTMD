@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<ShopNuocHoaTMD.Models.EF.Product>
 
+<style>
+</style>
 @if (Model != null && Model.Any())
 {
     foreach (var item in Model)
@@ -11,14 +13,13 @@
             strImg = img.Image;
         }
         <div class="product-item @item.Topic.Alias">
-            <div class="product discount product_filter">
+            <div class="product">
                 <div class="product_image">
                     <a href="/detail/@item.Alias-p@(item.Product_Id)">
                         <img src="@strImg" alt="@item.Name">
                     </a>
                 </div>
-                <div class="favorite favorite_left"></div>
-                <div class="product_info">
+                <div class="product_info mt-2">
                     <p>@item.Brand.Name</p>
                     <h6 class="product_name"><a href="/detail/@item.Alias-p@(item.Product_Id)">@item.Name</a></h6>
                     <p style="font-size:13px !important">@item.Category.Name</p>
@@ -32,8 +33,9 @@
                     }
                 </div>
             </div>
-            <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Product_Id">add to cart</a></div>
         </div>
+        <div class="red_button add_to_cart_button"><a href="/detail/@item.Alias-p@(item.Product_Id)" @*class="btnAddToCart" data-id="@item.Product_Id"*@>view</a></div>
+
     }
 }
 else

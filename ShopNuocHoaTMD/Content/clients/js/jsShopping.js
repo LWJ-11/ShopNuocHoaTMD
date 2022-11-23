@@ -7,6 +7,7 @@
         var price = 0;
         var tQuantity = $('#quantity_value').text();
         var tPrice = $('#price_value').text();
+        var tStock = $('.volume_active > span').text();
         if (tQuantity != '') {
 
             quatity = parseInt(tQuantity);
@@ -14,11 +15,14 @@
         if (tPrice != '') {
             price = parseInt(tPrice);
         }
+        if (tStock != '') {
+            stock = parseInt(tStock);
+        }
 
         $.ajax({
             url: '/shoppingcart/addtocart',
             type: 'POST',
-            data: { id: id, quantity: quatity, price: price },
+            data: { id: id, quantity: quatity, price: price, stock: stock },
             success: function (rs) {
                 if (rs.Success) {
                     $('#checkout_items').html(rs.count);

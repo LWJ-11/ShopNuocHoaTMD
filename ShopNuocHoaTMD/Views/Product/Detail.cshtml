@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="~/Content/clients/styles/single_responsive.css">
 
 <style>
-    .active {
+    .volume_active {
         border-width: 3px !important;
     }
 </style>
@@ -75,7 +75,7 @@
                         <h5>@Model.Category.Name</h5>
                     </div>
                     <div class="d-flex flex-column flex-sm-row align-items-sm-center mt-3">
-                        <h3>$<span id="price_value">@Model.ProductStock.First().Price</span></h3>
+                        <h3 style="color: #fe4c50;">$<span id="price_value">@Model.ProductStock.First().Price</span></h3>
                     </div>
                     <div class="d-flex flex-row align-items-center">
                         @foreach (var item in Model.ProductStock)
@@ -85,7 +85,7 @@
 
                                 <label class="cirle-size volume">
                                     <input type="radio" name="volume" id="volume-input-@item.Price" checked value="@item.Price" style="display:none" />
-                                    <span class="text-center p-auto font-weight-normal">@item.Volume ML</span>
+                                    <span class="text-center p-auto font-weight-normal">@item.Volume<span>ML</span></span>
                                 </label>
                             }
                             else
@@ -93,7 +93,7 @@
 
                                 <label class="cirle-size volume">
                                     <input type="radio" name="volume" id="volume-input-@item.Price" value="@item.Price" style="display:none" />
-                                    <span class="text-center p-auto font-weight-normal">@item.Volume ML</span>
+                                    <span class="text-center p-auto font-weight-normal">@item.Volume<span>ML</span></span>
                                 </label>
                             }
                         }
@@ -362,10 +362,10 @@
             var parent = elem.parent(),
                 checked = elem.is(':checked');
 
-            $('.volume').removeClass('active');
+            $('.volume').removeClass('volume_active');
 
             if (checked) {
-                parent.addClass('active');
+                parent.addClass('volume_active');
             }
         }
 

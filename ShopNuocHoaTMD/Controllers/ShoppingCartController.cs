@@ -59,7 +59,7 @@ namespace ShopNuocHoaTMD.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddtoCart(int id, int quantity, decimal price)
+        public ActionResult AddtoCart(int id, int quantity, decimal price, int stock)
         {
             var code = new { Success = false, msg = "", code = -1, count = 0};
             var db_Connect = new ApplicationDbContext();
@@ -84,6 +84,7 @@ namespace ShopNuocHoaTMD.Controllers
                 {
                     items.ProductImg = checkProduct.ProductImage.FirstOrDefault(x => x.isDefault).Image;
                 }
+                items.Stock = stock;
                 items.Price = price;
                 items.TotalPrice = items.Quantity * items.Price;
                 cart.AddToCart(items, quantity);
@@ -154,6 +155,35 @@ namespace ShopNuocHoaTMD.Controllers
                     order.ModifiedDate = DateTime.Now;
                     _dbConnect.Order.Add(order);
                     _dbConnect.SaveChanges();
+                    //send mail cho khach hang
+                    var strProduct = "";
+                    var total = decimal.Zero;
+                    var totalAmount = decimal.Zero;
+                    foreach(var pd in cart.Items)
+                    {
+                        strProduct += "<tr>";
+                        strProduct += "<td>" +pd.ProductName + pd.Stock+"ML"+"</td>";
+                        strProduct += "<td>" + pd.Quantity + "</td>";
+                        strProduct += "<td>" + "<span>$</span>" + pd.TotalPrice.ToString("0.00") + "</td>";
+                        strProduct += "</tr>";
+                        total += pd.Price * pd.Quantity;
+
+                    }
+                    if (total < 50)
+                        totalAmount = total + 17.99m;
+                    else
+                        totalAmount = total;
+                    string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
+                    contentCustomer = contentCustomer.Replace("{{OrderID}}", order.Order_Id.ToString());
+                    contentCustomer = contentCustomer.Replace("{{Product}}", strProduct);
+                    contentCustomer = contentCustomer.Replace("{{CustomerName}}", order.CustomerName);
+                    contentCustomer = contentCustomer.Replace("{{Phone}}", order.Phone);
+                    contentCustomer = contentCustomer.Replace("{{Email}}", order.Email);
+                    contentCustomer = contentCustomer.Replace("{{Address}}", order.Address);
+                    contentCustomer = contentCustomer.Replace("{{PlaceOrderDate}}", order.ModifiedDate.ToString());
+                    contentCustomer = contentCustomer.Replace("{{Total}}", total.ToString("0.00"));
+                    contentCustomer = contentCustomer.Replace("{{TotalAmount}}", totalAmount.ToString("0.00"));
+                    ShopNuocHoaTMD.Common.Common.SendMail("ShopNuocHoaTMD", "Order #" + order.Order_Id.ToString(), contentCustomer.ToString(), req.Email);
                     cart.ClearCart();
                     code = new { Success = true, code = -1 };
                     return RedirectToAction("CheckOutSucess");

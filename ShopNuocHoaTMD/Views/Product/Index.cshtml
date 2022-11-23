@@ -27,7 +27,7 @@
                     <div class="sidebar_title">
                         <h5>Product Category</h5>
                     </div>
-                    @Html.Action("MenuLeft","Menu")
+                    @Html.Action("MenuLeft", "Menu")
                 </div>
 
                 <!-- Price Range Filtering -->
@@ -41,6 +41,9 @@
                     <div id="slider-range"></div>
                     <div class="filter_button"><span>filter</span></div>
                 </div>
+                <hr />
+
+                @*@Html.Action("Refresh", "Home")*@
             </div>
 
             <!-- Main Content -->
@@ -99,7 +102,7 @@
                                                         <img src="@strImg" alt="@item.Name">
                                                     </a>
                                                 </div>
-                                                <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Product_Id">add to cart</a></div>
+                                                <div class="red_button add_to_cart_button"><a href="/detail/@item.Alias-p@(item.Product_Id)" @*class="btnAddToCart" data-id="@item.Product_Id"*@>view</a></div>
                                                 <div class="product_info mt-2">
                                                     <p>@item.Brand.Name</p>
                                                     <h6 class="product_name"><a href="/detail/@item.Alias-p@(item.Product_Id)">@item.Name</a></h6>
