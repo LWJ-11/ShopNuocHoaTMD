@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ShopNuocHoaTMD.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BrandController : Controller
     {
         private ApplicationDbContext _dbConnect = new ApplicationDbContext();

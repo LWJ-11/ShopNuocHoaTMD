@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ShopNuocHoaTMD.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin, Employee")]
     public class HomeController : Controller
     {
         // GET: Admin/Home

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ShopNuocHoaTMD.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Account List";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Menu" class="nav-link">Menu</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Advertisement" class="nav-link">Advertisement</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Brand" class="nav-link">Brand</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Category" class="nav-link">Category</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Topic" class="nav-link">Topic</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/Admin/Product" class="nav-link">Product</a>
+        </li>
+    </ul>
+}
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Account List</h3>
+
+            <div class="card-tools">
+                <a href="/Admin/Account/create" class="btn btn-primary">Add Account</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Account</th>
+                        <th>Full name</th>
+                        <th>Email</th>
+                        <th>Created Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        var i = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.UserName</td>
+                                <td>@item.FullName</td>
+                                <td>@item.Email</td>
+                                <td>
+                                    <a class="btn btn-success" href="/Admin/Account/edit/@item.UserName">Edit</a>
+                                    <a href="#" data-user="@item.UserName" class="btn btn-danger btnDelete">Delete</a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+
+    </div>
+    <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
+
+</section>

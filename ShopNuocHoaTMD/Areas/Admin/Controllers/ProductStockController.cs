@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace ShopNuocHoaTMD.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin, Employee")]
     public class ProductStockController : Controller
     {
         private ApplicationDbContext _dbConnect = new ApplicationDbContext();

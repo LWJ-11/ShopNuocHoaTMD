@@ -26,18 +26,18 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
             <li class="nav-item">
                 <a href="/Admin/Menu" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-th"></i>
                     <p>
-                       Menu     
+                        Menu
                     </p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/Admin/Advertisement" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-ad"></i>
                     <p>
                         Advertisement
                     </p>
@@ -53,9 +53,9 @@
             </li>
             <li class="nav-item">
                 <a href="/Admin/Category" class="nav-link">
-                    <i class="nav-icon fas fa-chart-pie"></i>
+                    <i class="nav-icon fas fa-clipboard-list"></i>
                     <p>
-                        Category
+                        Categories
                     </p>
                 </a>
             </li>
@@ -69,25 +69,42 @@
             </li>
             <li class="nav-item">
                 <a href="/Admin/Order" class="nav-link">
-                    <i class="nav-icon fas fa-edit"></i>
+                    <i class="nav-icon fas fa-box-archive"></i>
                     <p>
                         Order
                     </p>
                 </a>
             </li>
-            @*<li class="nav-item">
-                <a href="/Admin/DeliveryMethod" class="nav-link">
-                    <i class="nav-icon fas fa-truck"></i>
-                    <p>
-                        Delivery Method
-                    </p>
-                </a>
-            </li>*@
             <li class="nav-item">
                 <a href="/Admin/Product" class="nav-link">
-                    <i class="nav-icon fas fa-archive"></i>
+                    <i class="nav-icon fas fa-bottle-droplet"></i>
                     <p>
                         Product
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/Admin/Role" class="nav-link">
+                    <i class="nav-icon fas fa-bars"></i>
+                    <p>
+                        Role
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/Account" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                        Account
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item mt-xl-5">
+                <a href="javascript:document.getElementById('logOffForm').submit()" class="nav-link">
+                    <i class="nav-icon fas fa-right-from-bracket"></i>
+                    <p>
+                        Sign Out
                     </p>
                 </a>
             </li>
@@ -96,3 +113,15 @@
     <!-- /.sidebar-menu -->
 </div>
 <!-- /.sidebar -->
+
+@if (Request.IsAuthenticated)
+{
+
+
+<div style="display:none">
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @id = "logOffForm" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+    </div>
+}
