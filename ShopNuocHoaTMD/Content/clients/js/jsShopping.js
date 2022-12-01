@@ -36,6 +36,7 @@
     $('body').on('click', '.btnDelete', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
+        var stock = $('#Stock_' + id).text();
         toastr.warning("<br /><button type='button' id='confirmationButtonYes' class='btn clear' style='margin:0px; float:right;'>Yes</button>", 'Do you want to remove all items in bag?',
             {
                 closeButton: false,
@@ -45,7 +46,7 @@
                         $.ajax({
                             url: '/shoppingcart/delete',
                             type: 'POST',
-                            data: { id: id },
+                            data: { id: id, stock: stock },
                             success: function (rs) {
                                 if (rs.Success) {
                                     $('#checkout_items').html(rs.count);
@@ -75,7 +76,8 @@
         e.preventDefault();
         var id = $(this).data("id");
         var quantity = $('#Quantity_' + id).val();
-        Update(id, quantity);
+        var stock = $('#Stock_' + id).text();
+        Update(id, quantity, stock);
         toastr.optionsOverride = 'positionclass = "toast-bottom-full-width"';
         toastr.options.positionClass = 'toast-bottom-right';
         toastr.success('Item updated');
@@ -103,11 +105,11 @@ function DeleteAll() {
     })
 }
 
-function Update(id, quantity) {
+function Update(id, quantity, stock) {
     $.ajax({
         url: '/shoppingcart/Update',
         type: 'POST',
-        data: { id: id, quantity: quantity },
+        data: { id: id, quantity: quantity, stock: stock},
         success: function (rs) {
             if (rs.Success) {
                 LoadCart();

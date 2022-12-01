@@ -45,6 +45,15 @@ namespace ShopNuocHoaTMD.Models
                 checkExist.TotalPrice = checkExist.Price * checkExist.Quantity;
             }
         }
+        public int GetCurrentQuantity(int id)
+        {
+            var checkExist = Items.SingleOrDefault(x => x.ProductId == id);
+            if (checkExist != null)
+            {
+                return checkExist.Quantity;
+            }
+            return 0;
+        }
         public decimal GetTotalPrice()
         {
             return Items.Sum(x => x.TotalPrice);    

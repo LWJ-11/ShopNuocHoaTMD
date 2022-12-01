@@ -31,7 +31,7 @@
             <tr class="text-center" id="trow_@item.ProductId">
                 <td>@(i + 1)</td>
                 <td><a href="/detail/@item.ProductAlias-p@(item.ProductId)"><img class="product-image" width="60px" src="@item.ProductImg" alt="@item.ProductName" /></a></td>
-                <td><a href="/detail/@item.ProductAlias-p@(item.ProductId)" style="color:black">@item.ProductName @item.Stock<span>ML</span></a></td>
+                <td><a href="/detail/@item.ProductAlias-p@(item.ProductId)" style="color:black">@item.ProductName <span id="Stock_@item.ProductId">@item.Stock</span><span>ML</span></a></td>
                 <td>@item.CategoryName</td>
                 <td>$@item.Price.ToString("0.00")</td>
                 <td>

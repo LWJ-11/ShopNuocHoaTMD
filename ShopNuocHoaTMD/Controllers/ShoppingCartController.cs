@@ -62,8 +62,7 @@ namespace ShopNuocHoaTMD.Controllers
         public ActionResult AddtoCart(int id, int quantity, decimal price, int stock)
         {
             var code = new { Success = false, msg = "", code = -1, count = 0};
-            var db_Connect = new ApplicationDbContext();
-            var checkProduct = db_Connect.Product.FirstOrDefault(x => x.Product_Id == id);
+            var checkProduct = _dbConnect.Product.FirstOrDefault(x => x.Product_Id == id);
             if(checkProduct != null)
             {
                 ShoppingCart cart = (ShoppingCart)Session["Cart"];
@@ -71,55 +70,86 @@ namespace ShopNuocHoaTMD.Controllers
                 {
                     cart = new ShoppingCart(); 
                 }
-                ShoppingCartItem items = new ShoppingCartItem
+                var productStock = _dbConnect.ProductStock.FirstOrDefault(x => x.Volume == stock && checkProduct.Product_Id == x.Product_Id);
+                if (productStock.Quantity < quantity)
                 {
-                    ProductId = checkProduct.Product_Id,
-                    ProductName = checkProduct.Name,
-                    ProductAlias = checkProduct.Alias,
-                    CategoryName = checkProduct.Category.Name,
-                    TopicName = checkProduct.Topic.Title,
-                    Quantity = quantity,
-                };
-                if (checkProduct.ProductImage.FirstOrDefault(x => x.isDefault) != null)
-                {
-                    items.ProductImg = checkProduct.ProductImage.FirstOrDefault(x => x.isDefault).Image;
+                    code = new { Success = false, msg = "This product is out of stock at this moment", code = 1, count = cart.Items.Count };
                 }
-                items.Stock = stock;
-                items.Price = price;
-                //var productStock = _dbConnect.ProductStock.Single(x => x.Product_Id == items.ProductId);
-                //if (productStock.Quantity < 0)
-                //{
-                //    code = new { Success = false, msg = "This product is out of stock", code = -1, count = cart.Items.Count };
-                //}
-                items.TotalPrice = items.Quantity * items.Price;
-                cart.AddToCart(items, quantity);
-                Session["Cart"] = cart;
-                code = new { Success = true, msg = "Item added to bag", code = 1, count = cart.Items.Count };
+                else
+                {
+                    ShoppingCartItem items = new ShoppingCartItem
+                    {
+                        ProductId = checkProduct.Product_Id,
+                        ProductName = checkProduct.Name,
+                        ProductAlias = checkProduct.Alias,
+                        CategoryName = checkProduct.Category.Name,
+                        TopicName = checkProduct.Topic.Title,
+                        Quantity = quantity,
+                    };
+                    _dbConnect.ProductStock.Attach(productStock);
+                    productStock.Quantity = productStock.Quantity - quantity;
+                    _dbConnect.SaveChanges();
+                    if (checkProduct.ProductImage.FirstOrDefault(x => x.isDefault) != null)
+                    {
+                        items.ProductImg = checkProduct.ProductImage.FirstOrDefault(x => x.isDefault).Image;
+                    }
+                    items.Stock = stock;
+                    items.Price = price;
+                    items.TotalPrice = items.Quantity * items.Price;
+                    cart.AddToCart(items, quantity);
+                    Session["Cart"] = cart;
+                    code = new { Success = true, msg = "Item added to bag", code = 1, count = cart.Items.Count };
+                }
             }
             return Json(code);
         }
         [HttpPost]
-        public ActionResult Update(int id, int quantity)
+        public ActionResult Update(int id, int quantity, int stock)
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            int currentQuantity = cart.GetCurrentQuantity(id);
             if (cart != null)
             {
-                cart.UpdateQuanity(id, quantity);
-                return Json(new { Success = true });
+                var checkProduct = _dbConnect.Product.FirstOrDefault(x => x.Product_Id == id);
+                var productStock = _dbConnect.ProductStock.FirstOrDefault(x => x.Volume == stock && checkProduct.Product_Id == x.Product_Id);
+                if (productStock.Quantity < quantity)
+                {
+                    return Json(new { Success = false, msg = "This product is out of stock at this moment" });
+                }
+                else
+                {
+                    cart.UpdateQuanity(id, quantity);
+                    if (quantity < currentQuantity)
+                    {
+                        productStock.Quantity = productStock.Quantity + (currentQuantity - quantity);
+                        currentQuantity = quantity;
+                    }
+                    else
+                    {
+                        productStock.Quantity = productStock.Quantity - (quantity - currentQuantity);
+                        currentQuantity = quantity;
+                    }
+                    _dbConnect.SaveChanges();
+                    return Json(new { Success = true });
+                }
             }
             return Json(new { Success = false });
         }
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, int stock)
         {
             var code = new { Success = false, msg = "", code = -1, count = 0 };
 
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            int currentQuantity = cart.GetCurrentQuantity(id);
             if (cart != null)
             {
                 var checkProduct = cart.Items.FirstOrDefault(x => x.ProductId == id);
-                if(checkProduct != null)
+                var productStock = _dbConnect.ProductStock.FirstOrDefault(x => x.Volume == stock && checkProduct.ProductId == x.Product_Id);
+                if (checkProduct != null)
                 {
+                    productStock.Quantity = productStock.Quantity + currentQuantity;
+                    _dbConnect.SaveChanges();
                     cart.Remove(id);
                     code = new { Success = true, msg = "", code = -1, count = cart.Items.Count };
                 }
