@@ -5,7 +5,7 @@
 }
 <!-- Content Header (Page header) -->
 @section naviheader{
-<!-- Left navbar links -->
+    <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -77,7 +77,6 @@
                         <th>Account</th>
                         <th>Full name</th>
                         <th>Email</th>
-                        <th>Created Date</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -87,14 +86,14 @@
                         var i = 1;
                         foreach (var item in Model)
                         {
-                            <tr>
+                            <tr id="trow_@item.Id">
                                 <td>@i</td>
                                 <td>@item.UserName</td>
                                 <td>@item.FullName</td>
                                 <td>@item.Email</td>
                                 <td>
-                                    <a class="btn btn-success" href="/Admin/Account/edit/@item.UserName">Edit</a>
-                                    <a href="#" data-user="@item.UserName" class="btn btn-danger btnDelete">Delete</a>
+                                    <a href="/Admin/Account/Edit/@item.Id" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm  btn-danger btnDelete">Delete</a>
                                 </td>
                             </tr>
                             i++;
@@ -109,7 +108,28 @@
 
     </div>
     <!-- /.card-footer -->
-    </div>
     <!-- /.card -->
 
 </section>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id");
+                var conf = confirm('Do you wanr to delete this record?');
+                if (conf == true) {
+                    $.ajax({
+                        url: '/admin/account/delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
+                            }
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+}

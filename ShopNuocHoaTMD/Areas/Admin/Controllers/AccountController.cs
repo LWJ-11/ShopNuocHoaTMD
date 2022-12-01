@@ -114,7 +114,6 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
         }
 
         // GET: /Account/Register
-        [AllowAnonymous]
         public ActionResult Create()
         {
             ViewBag.Role = new SelectList(_dbConnect.Roles.ToList(), "Name", "Name");
@@ -124,7 +123,6 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateAccountViewModel model)
         {
@@ -156,6 +154,62 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+        public ActionResult Edit(string Id)
+        {
+            var user = UserManager.FindById(Id);
+            EditAccountViewModel userToEdit = new EditAccountViewModel()
+            {
+                UserId= user.Id,
+                FullName = user.FullName,
+                Email = user.Email,
+                Phone = user.Phone
+            };
+            ViewBag.Role = new SelectList(_dbConnect.Roles.ToList(), "Name", "Name");
+            return View(userToEdit);
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser UserToEdit = UserManager.FindById(model.UserId);
+
+                if (UserToEdit.FullName != model.FullName)
+                    UserToEdit.FullName = model.FullName;
+
+                if (UserToEdit.Email != model.Email)
+                    UserToEdit.Email = model.Email;
+
+                if (UserToEdit.Phone != model.Phone)
+                    UserToEdit.Phone = model.Phone;
+
+                IdentityResult result = UserManager.Update(UserToEdit);
+                if (result.Succeeded)
+                {
+                    UserManager.AddToRole(UserToEdit.Id, model.Role);
+                    return RedirectToAction("Index", "Account");
+                }
+                AddErrors(result);
+            }
+            ViewBag.Role = new SelectList(_dbConnect.Roles.ToList(), "Name", "Name");
+            return View(model);
+        }
+        public ActionResult Delete(string Id)
+        {
+            ApplicationUser UserToDelete = UserManager.FindById(Id);
+            if (UserToDelete != null)
+            {
+                IdentityResult result = UserManager.Delete(UserToDelete);
+                if (result.Succeeded)
+                    return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
         private void AddErrors(IdentityResult result)
         {

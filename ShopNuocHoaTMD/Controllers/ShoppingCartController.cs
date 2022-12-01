@@ -86,6 +86,11 @@ namespace ShopNuocHoaTMD.Controllers
                 }
                 items.Stock = stock;
                 items.Price = price;
+                //var productStock = _dbConnect.ProductStock.Single(x => x.Product_Id == items.ProductId);
+                //if (productStock.Quantity < 0)
+                //{
+                //    code = new { Success = false, msg = "This product is out of stock", code = -1, count = cart.Items.Count };
+                //}
                 items.TotalPrice = items.Quantity * items.Price;
                 cart.AddToCart(items, quantity);
                 Session["Cart"] = cart;
@@ -155,7 +160,10 @@ namespace ShopNuocHoaTMD.Controllers
                     order.ModifiedDate = DateTime.Now;
                     _dbConnect.Order.Add(order);
                     _dbConnect.SaveChanges();
-                    //send mail cho khach hang
+
+                    //send mail cho customer sau khi đặt hàng
+                    //Có thể hủy đơn hàng trước kkhi ad min duyệt đơn hàng
+                    //cần gửi yêu cầu xác nhận chờ duyệt sau đó mới gửi chấp nhận đơn hàng
                     var strProduct = "";
                     var total = decimal.Zero;
                     var totalAmount = decimal.Zero;

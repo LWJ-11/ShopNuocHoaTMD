@@ -68,6 +68,7 @@ namespace ShopNuocHoaTMD.Models
         [Required]
         public string FullName { get; set; }
         [Required]
+        [Phone]
         public string Phone { get; set; }
         public string Role { get; set; }
 
@@ -86,6 +87,31 @@ namespace ShopNuocHoaTMD.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+    public class EditAccountViewModel
+    {
+        public string UserId { get; set; }
+
+        [Required]
+        [Display(Name = "Full name")]
+        public string FullName { get; set; }
+
+        [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Phone number")]
+        [Phone]
+
+        public string Phone
+        {
+            get; set;
+        }
     }
     public class RegisterViewModel
     {
