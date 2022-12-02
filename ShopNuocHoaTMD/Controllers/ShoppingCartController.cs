@@ -88,7 +88,6 @@ namespace ShopNuocHoaTMD.Controllers
                     };
                     _dbConnect.ProductStock.Attach(productStock);
                     productStock.Quantity = productStock.Quantity - quantity;
-                    _dbConnect.SaveChanges();
                     if (checkProduct.ProductImage.FirstOrDefault(x => x.isDefault) != null)
                     {
                         items.ProductImg = checkProduct.ProductImage.FirstOrDefault(x => x.isDefault).Image;
@@ -129,27 +128,22 @@ namespace ShopNuocHoaTMD.Controllers
                         productStock.Quantity = productStock.Quantity - (quantity - currentQuantity);
                         currentQuantity = quantity;
                     }
-                    _dbConnect.SaveChanges();
                     return Json(new { Success = true });
                 }
             }
             return Json(new { Success = false });
         }
         [HttpPost]
-        public ActionResult Delete(int id, int stock)
+        public ActionResult Delete(int id)
         {
             var code = new { Success = false, msg = "", code = -1, count = 0 };
 
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
-            int currentQuantity = cart.GetCurrentQuantity(id);
             if (cart != null)
             {
                 var checkProduct = cart.Items.FirstOrDefault(x => x.ProductId == id);
-                var productStock = _dbConnect.ProductStock.FirstOrDefault(x => x.Volume == stock && checkProduct.ProductId == x.Product_Id);
                 if (checkProduct != null)
                 {
-                    productStock.Quantity = productStock.Quantity + currentQuantity;
-                    _dbConnect.SaveChanges();
                     cart.Remove(id);
                     code = new { Success = true, msg = "", code = -1, count = cart.Items.Count };
                 }
@@ -177,7 +171,7 @@ namespace ShopNuocHoaTMD.Controllers
                         Quanity = x.Quantity,
                         Price = x.Price,
                         Order_Id = order.Order_Id
-                    })); ;
+                    }));
                     order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity));
                     if (order.TotalAmount < 50)
                         order.TotalAmount += 17.99m;
@@ -188,6 +182,13 @@ namespace ShopNuocHoaTMD.Controllers
                     order.ModifiedBy = req.Phone;
                     order.CreatedDate = DateTime.Now;
                     order.ModifiedDate = DateTime.Now;
+                    for(int i = 0; i < cart.Items.Count; i++)
+                    {
+                        var item = cart.Items[i];
+                        var checkProduct = _dbConnect.Product.FirstOrDefault(x => x.Product_Id == item.ProductId);
+                        var productStock = _dbConnect.ProductStock.FirstOrDefault(x => x.Volume == item.Stock && checkProduct.Product_Id == x.Product_Id);
+                        productStock.Quantity = productStock.Quantity - item.Quantity;
+                    }
                     _dbConnect.Order.Add(order);
                     _dbConnect.SaveChanges();
 

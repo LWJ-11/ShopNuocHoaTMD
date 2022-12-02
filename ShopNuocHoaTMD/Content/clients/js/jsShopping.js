@@ -36,7 +36,6 @@
     $('body').on('click', '.btnDelete', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
-        var stock = $('#Stock_' + id).text();
         toastr.warning("<br /><button type='button' id='confirmationButtonYes' class='btn clear' style='margin:0px; float:right;'>Yes</button>", 'Do you want to remove all items in bag?',
             {
                 closeButton: false,
@@ -46,7 +45,7 @@
                         $.ajax({
                             url: '/shoppingcart/delete',
                             type: 'POST',
-                            data: { id: id, stock: stock },
+                            data: { id: id},
                             success: function (rs) {
                                 if (rs.Success) {
                                     $('#checkout_items').html(rs.count);
