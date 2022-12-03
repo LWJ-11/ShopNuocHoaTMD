@@ -1,8 +1,12 @@
-﻿using ShopNuocHoaTMD.Models;
+﻿using Microsoft.AspNet.Identity;
+using ShopNuocHoaTMD.Models;
 using ShopNuocHoaTMD.Models.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 
@@ -23,7 +27,21 @@ namespace ShopNuocHoaTMD.Controllers
             {
                 ViewBag.CheckCart = cart;
             }
-            return View();
+            var user = new OrderViewModel()
+            {
+                CustomerName = "",
+                Phone = "",
+                Email = "",
+            };
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var currentUserId = User.Identity.GetUserId();
+                var currentUser = _dbConnect.Users.FirstOrDefault(x => x.Id == currentUserId);
+                user.CustomerName = currentUser.FullName;
+                user.Phone = currentUser.Phone;
+                user.Email = currentUser.Email;
+            }
+            return View(user);
         }
         public ActionResult CheckOutSucess()
         {

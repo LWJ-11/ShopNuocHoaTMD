@@ -156,7 +156,7 @@
                                                     <p style="font-size:13px !important">@item.Category.Name</p>
                                                     @if (item.ProductStock.Count() > 1)
                                                     {
-                                                        <div class="product_price">$@item.ProductStock.FirstOrDefault().Price - @item.ProductStock.LastOrDefault().Price</div>
+                                                        <div class="product_price">$@item.ProductStock.FirstOrDefault().Price - $@item.ProductStock.LastOrDefault().Price</div>
                                                     }
                                                     else
                                                     {

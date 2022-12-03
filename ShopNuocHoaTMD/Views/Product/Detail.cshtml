@@ -105,7 +105,10 @@
                             <span id="quantity_value">1</span>
                             <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
                         </div>
-                        <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+                        }
                     </div>
                     <div class="d-flex flex-column flex-sm-row align-items-sm-center mt-3">
                         <div class="red_button" style="width:286px; margin-left:0px;"><a href="#"class="btnAddToCart" data-id="@Model.Product_Id">add to cart</a></div>
