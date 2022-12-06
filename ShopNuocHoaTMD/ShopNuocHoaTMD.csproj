@@ -202,6 +202,7 @@
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -270,6 +271,10 @@
     <Compile Include="Migrations\202211261421068_user.designer.cs">
       <DependentUpon>202211261421068_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212050148358_fav_list.cs" />
+    <Compile Include="Migrations\202212050148358_fav_list.designer.cs">
+      <DependentUpon>202212050148358_fav_list.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Common\Filter.cs" />
@@ -279,6 +284,7 @@
     <Compile Include="Models\EF\Brand.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\CommonAbstract.cs" />
+    <Compile Include="Models\EF\FavoriteProduct.cs" />
     <Compile Include="Models\EF\Menu.cs" />
     <Compile Include="Models\EF\Order.cs" />
     <Compile Include="Models\EF\OrderDetail.cs" />
@@ -3135,6 +3141,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\core\connector\aspx\Uploads\files\" />
+    <Folder Include="Views\Favorite\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3200,6 +3207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211261421068_user.resx">
       <DependentUpon>202211261421068_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212050148358_fav_list.resx">
+      <DependentUpon>202212050148358_fav_list.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

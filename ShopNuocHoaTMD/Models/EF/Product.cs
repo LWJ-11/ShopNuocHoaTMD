@@ -16,6 +16,7 @@ namespace ShopNuocHoaTMD.Models.EF
             this.ProductImage = new HashSet<ProductImage>();
             this.OrderDetail = new HashSet<OrderDetail>();
             this.ProductStock = new List<ProductStock>();
+            this.FavoriteProducts = new List<FavoriteProduct>();
         }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -40,6 +41,7 @@ namespace ShopNuocHoaTMD.Models.EF
 
 
         public virtual ICollection<ProductImage> ProductImage { get; set; }
+        public virtual ICollection<FavoriteProduct> FavoriteProducts { get; set; }
         public ICollection<ProductStock> ProductStock { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual Brand Brand { get; set; }

@@ -518,3 +518,4 @@ D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.upda
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\Dapper.dll
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\Dapper.xml
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.user.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.fav_list.resources
