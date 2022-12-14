@@ -86,14 +86,6 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
             ViewBag.Category = new SelectList(_dbConnect.Category.ToList(), "Category_Id", "Name");
             return View(model);
         }
-        public ActionResult Edit (int id)
-        {
-            ViewBag.Topic = new SelectList(_dbConnect.Topic.ToList(), "Topic_Id", "Title");
-            ViewBag.Brand = new SelectList(_dbConnect.Brand.ToList(), "Brand_Id", "Name");
-            ViewBag.Category = new SelectList(_dbConnect.Category.ToList(), "Category_Id", "Name");
-            var item = _dbConnect.Product.Find(id);
-            return View(item);
-        }
         public ActionResult Detail(int id)
         {
             ViewBag.Topic = new SelectList(_dbConnect.Topic.ToList(), "Topic_Id", "Title");
@@ -103,6 +95,14 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
                     .Include(s => s.ProductStock)
                     .SingleOrDefault(p => p.Product_Id == id);
             return View(product);
+        }
+        public ActionResult Edit (int id)
+        {
+            ViewBag.Topic = new SelectList(_dbConnect.Topic.ToList(), "Topic_Id", "Title");
+            ViewBag.Brand = new SelectList(_dbConnect.Brand.ToList(), "Brand_Id", "Name");
+            ViewBag.Category = new SelectList(_dbConnect.Category.ToList(), "Category_Id", "Name");
+            var item = _dbConnect.Product.Find(id);
+            return View(item);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

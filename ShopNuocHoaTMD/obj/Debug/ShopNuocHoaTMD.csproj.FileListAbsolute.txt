@@ -519,3 +519,7 @@ D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\Dapper.dll
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\bin\Dapper.xml
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.user.resources
 D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.fav_list.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.removeFav.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.orderHistory.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.orderHistory1.resources
+D:\GitHub\ShopNuocHoaTMD\ShopNuocHoaTMD\obj\Debug\ShopNuocHoaTMD.Migrations.orderHistory2.resources

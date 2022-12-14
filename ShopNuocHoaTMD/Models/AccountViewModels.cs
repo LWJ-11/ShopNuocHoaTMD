@@ -116,6 +116,15 @@ namespace ShopNuocHoaTMD.Models
     public class RegisterViewModel
     {
         [Required]
+        public string UserName { get; set; }
+        [Required]
+        public string FullName { get; set; }
+        [Required]
+        [Phone]
+        public string Phone { get; set; }
+        public string Role { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

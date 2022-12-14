@@ -19,6 +19,7 @@ namespace ShopNuocHoaTMD.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Order_Id { get; set; }
+        public int? User_Id { get; set; }
         [Required]
         public bool IsDelivered { get; set; }
         [Required]

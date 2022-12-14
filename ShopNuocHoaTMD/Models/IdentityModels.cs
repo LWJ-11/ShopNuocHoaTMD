@@ -11,12 +11,12 @@ namespace ShopNuocHoaTMD.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser()
-        {
-            this.FavoriteProducts = new List<FavoriteProduct>();
-        }
         public string FullName { get; set; }
         public string Phone { get; set; }
+        public ApplicationUser()
+        {
+            this.Order = new HashSet<Order>();
+        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -24,7 +24,7 @@ namespace ShopNuocHoaTMD.Models
             // Add custom user claims here
             return userIdentity;
         }
-        public virtual ICollection<FavoriteProduct> FavoriteProducts { get; set; }
+        public ICollection<Order> Order { get; set; }
 
     }
 
@@ -45,7 +45,6 @@ namespace ShopNuocHoaTMD.Models
         public DbSet<ProductImage> ProductImage { get; set; }
         public DbSet<ProductStock> ProductStock { get; set; }
         public DbSet<Topic> Topic { get; set; }
-        public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
