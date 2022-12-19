@@ -1743,3 +1743,70 @@ section
 {
 	color: #fe4c50;
 }
+
+.page-wrapper {
+	padding: 0.4rem;
+	background-image: none;
+}
+.blog-list .blog-meta.big-meta h4 {
+	margin-left: -20%;
+	margin-top: 1rem;
+	background-color: #ffffff;
+	padding: 1rem 1.5rem 1rem;
+}
+.post-media:hover .menucat {
+	display: none;
+}
+
+.post-media img {
+	width: 100%;
+}
+.blog-meta.big-meta h4 {
+	padding: 1rem 0 0.6rem;
+	margin: 0;
+	font-size: 28px;
+}
+
+.blog-meta.big-meta p {
+	margin-bottom: 0.5rem;
+	padding-bottom: 0;
+}
+.blog-title-area {
+	display: block;
+	position: relative;
+	padding: 0;
+	margin-bottom: 3rem;
+}
+
+	.blog-title-area{
+		float: none;
+		text-align: left;
+		padding: 0;
+		color: #a3a5a8;
+		margin: 0;
+	}
+		.blog-title-area .breadcrumb-item.active,
+		.blog-title-area .breadcrumb-item + .breadcrumb-item::before,
+		.blog-title-area .blog-meta small,
+		.blog-title-area a {
+			color: #a3a5a8;
+		}
+
+		.blog-title-area span {
+			margin: 0.5rem 0;
+			display: block;
+		}
+
+			.blog-title-area span a {
+				padding: 0 1rem;
+				color: #ffffff !important;
+				border-radius: 3px;
+			}
+
+		.blog-title-area h3 {
+			font-size: 41px;
+			line-height: 50px;
+			margin-bottom: 7px;
+			margin-top: 0;
+			overflow-wrap: break-word;
+		}		

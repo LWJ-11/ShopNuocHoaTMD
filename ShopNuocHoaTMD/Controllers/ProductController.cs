@@ -37,6 +37,7 @@ namespace ShopNuocHoaTMD.Controllers
             {
                 items = items.Where(x => x.Alias.Contains(Searchtext) || x.Name.Contains(Searchtext)).ToList();
             }
+            ViewBag.SearchText = Searchtext;
             return View(items);
         }
         public ActionResult ProductTopic(string alias, int? id)

@@ -107,7 +107,6 @@ namespace ShopNuocHoaTMD.Models
         [Required]
         [Display(Name = "Phone number")]
         [Phone]
-
         public string Phone
         {
             get; set;

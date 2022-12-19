@@ -184,12 +184,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdvertisementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -201,7 +201,9 @@
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\IdentityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -290,12 +292,33 @@
     <Compile Include="Migrations\202212081213252_orderHistory2.designer.cs">
       <DependentUpon>202212081213252_orderHistory2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212190824036_blog.cs" />
+    <Compile Include="Migrations\202212190824036_blog.designer.cs">
+      <DependentUpon>202212190824036_blog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212190827082_blogs.cs" />
+    <Compile Include="Migrations\202212190827082_blogs.designer.cs">
+      <DependentUpon>202212190827082_blogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212190903482_blogss.cs" />
+    <Compile Include="Migrations\202212190903482_blogss.designer.cs">
+      <DependentUpon>202212190903482_blogss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212190909536_blogs1.cs" />
+    <Compile Include="Migrations\202212190909536_blogs1.designer.cs">
+      <DependentUpon>202212190909536_blogs1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212191526527_blogs2.cs" />
+    <Compile Include="Migrations\202212191526527_blogs2.designer.cs">
+      <DependentUpon>202212191526527_blogs2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Common\Filter.cs" />
     <Compile Include="Models\Common\VisitStatistic.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\EF\Advertisement.cs" />
+    <Compile Include="Models\EF\Blog.cs" />
     <Compile Include="Models\EF\Brand.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\CommonAbstract.cs" />
@@ -3082,6 +3105,9 @@
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3151,6 +3177,9 @@
     <Content Include="Views\Home\Refresh.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\Detail.cshtml" />
+    <Content Include="Views\Blog\_PartialBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3237,6 +3266,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212081213252_orderHistory2.resx">
       <DependentUpon>202212081213252_orderHistory2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212190824036_blog.resx">
+      <DependentUpon>202212190824036_blog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212190827082_blogs.resx">
+      <DependentUpon>202212190827082_blogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212190903482_blogss.resx">
+      <DependentUpon>202212190903482_blogss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212190909536_blogs1.resx">
+      <DependentUpon>202212190909536_blogs1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212191526527_blogs2.resx">
+      <DependentUpon>202212191526527_blogs2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

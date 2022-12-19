@@ -35,6 +35,7 @@ namespace ShopNuocHoaTMD.Models
         {
         }
         public DbSet<Advertisement> Advertisements { get; set; }
+        public DbSet<Blog> Blog { get; set; }
         public DbSet<Statistic> Statistic { get; set; }
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Category> Category { get; set; }
