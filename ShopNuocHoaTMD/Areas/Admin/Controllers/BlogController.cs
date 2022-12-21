@@ -1,4 +1,5 @@
 ﻿using PagedList;
+using ShopNuocHoaTMD.DesignPattern.ProxyPattern;
 using ShopNuocHoaTMD.Models;
 using ShopNuocHoaTMD.Models.EF;
 using System;
@@ -43,10 +44,8 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.CreatedDate = DateTime.Now;
-                model.ModifiedDate = DateTime.Now;
-                _dbConnect.Blog.Add(model);
-                _dbConnect.SaveChanges();
+                Blogs blog = new BlogProxyPattern(model);
+                blog.AddBlogs();
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -63,16 +62,8 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _dbConnect.Blog.Attach(model);
-                model.ModifiedDate = DateTime.Now;
-                _dbConnect.Entry(model).Property(x => x.Title).IsModified = true;
-                _dbConnect.Entry(model).Property(x => x.Content).IsModified = true;
-                _dbConnect.Entry(model).Property(x => x.Description).IsModified = true;
-                _dbConnect.Entry(model).Property(x => x.Author).IsModified = true;
-                _dbConnect.Entry(model).Property(x => x.CoverImage).IsModified = true;
-                _dbConnect.Entry(model).Property(x => x.ModifiedBy).IsModified = true;
-                _dbConnect.Entry(model).Property(x => x.ModifiedDate).IsModified = true;
-                _dbConnect.SaveChanges();
+                Blogs blog = new BlogProxyPattern(model);
+                blog.EditBlogs();
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -86,7 +77,6 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
                 _dbConnect.Blog.Remove(item);
                 _dbConnect.SaveChanges();
                 return Json(new { success = true });
-
             }
             return Json(new { success = false });
         }

@@ -1,0 +1,27 @@
+﻿@model ShopNuocHoaTMD.Models.StatisticModel
+
+@if (Model != null)
+{
+    <div class="statistic">
+        <table class="table">
+            <tr>
+                <td>Today</td>
+                <td>@Model.Today</td>
+            </tr>
+            <tr>
+                <td>Yesterday</td>
+                <td>@Model.Yesterday</td>
+            </tr>
+            <tr>
+                <td>This week</td>
+                <td>@Model.ThisWeek</td>
+            </tr>
+            <tr>
+                <td>Online visitors</td>
+                <td>@ViewBag.vistors_online</td>
+            </tr>
+        </table>
+    </div>
+}
+
+

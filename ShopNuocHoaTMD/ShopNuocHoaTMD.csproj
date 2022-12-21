@@ -209,6 +209,10 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="DesignPattern\ProxyPattern\Blogs.cs" />
+    <Compile Include="DesignPattern\ProxyPattern\BlogProxyPattern.cs" />
+    <Compile Include="DesignPattern\ProxyPattern\ConcreteBlog.cs" />
+    <Compile Include="DesignPattern\SingletonPattern.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
