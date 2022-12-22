@@ -209,6 +209,8 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="DesignPattern\MementoPattern\CareTaker.cs" />
+    <Compile Include="DesignPattern\MementoPattern\Memento.cs" />
     <Compile Include="DesignPattern\ProxyPattern\Blogs.cs" />
     <Compile Include="DesignPattern\ProxyPattern\BlogProxyPattern.cs" />
     <Compile Include="DesignPattern\ProxyPattern\ConcreteBlog.cs" />

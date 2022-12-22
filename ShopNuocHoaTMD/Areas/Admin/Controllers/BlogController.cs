@@ -1,9 +1,11 @@
 ﻿using PagedList;
+using ShopNuocHoaTMD.DesignPattern.MementoPattern;
 using ShopNuocHoaTMD.DesignPattern.ProxyPattern;
 using ShopNuocHoaTMD.Models;
 using ShopNuocHoaTMD.Models.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,6 +16,7 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
     public class BlogController : Controller
     {
         private ApplicationDbContext _dbConnect = new ApplicationDbContext();
+        CareTaker careTaker = new CareTaker();
         // GET: Admin/Blog
         public ActionResult Index(string Searchtext, int? page)
         {
@@ -58,12 +61,29 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Blog model)
+        public ActionResult Edit(int? id,Blog model, string submitButton)
         {
             if (ModelState.IsValid)
             {
                 Blogs blog = new BlogProxyPattern(model);
-                blog.EditBlogs();
+                if (submitButton.ToString() == "Save")
+                {
+                    blog.EditBlogs();
+                }
+                else if (submitButton.ToString() == "Redo")
+                {
+                    var memetoSession = Session["Memento"];
+                    careTaker.StoredBlog = (Memento)memetoSession;
+                    model.RestoreProduct(careTaker.StoredBlog);
+                    blog.EditBlogs();
+                }
+                else if (submitButton.ToString() == "SaveStage")
+                {
+                    Blog blogOlder = _dbConnect.Blog.Find(id);
+                    careTaker.StoredBlog = blogOlder.CreateStored(model);
+                    careTaker.SaveMementoToSession(careTaker.StoredBlog);
+                    return View(model);
+                }
                 return RedirectToAction("Index");
             }
             return View(model);
