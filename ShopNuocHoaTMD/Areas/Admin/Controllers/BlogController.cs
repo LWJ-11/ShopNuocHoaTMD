@@ -79,7 +79,11 @@ namespace ShopNuocHoaTMD.Areas.Admin.Controllers
                 }
                 else if (submitButton.ToString() == "SaveStage")
                 {
-                    Blog blogOlder = _dbConnect.Blog.Find(id);
+                    Blog blog1 = new Blog();
+                    blog1 = model;
+                    blog1 = model.ShallowCoppy();
+                    blog1 = model.DeepCopy();
+                    Blog blogOlder = _dbConnect.Blog.Find(blog1.Blog_Id);
                     careTaker.StoredBlog = blogOlder.CreateStored(model);
                     careTaker.SaveMementoToSession(careTaker.StoredBlog);
                     return View(model);

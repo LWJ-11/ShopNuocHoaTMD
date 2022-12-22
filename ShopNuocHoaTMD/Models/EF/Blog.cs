@@ -41,5 +41,17 @@ namespace ShopNuocHoaTMD.Models.EF
             this.CoverImage = blogMemento.CoverImage;
             this.Author = blogMemento.Author;
         }
+
+        //Prototype Design Pattern
+        public Blog ShallowCoppy()
+        {
+            return (Blog)this.MemberwiseClone();
+        }
+        public Blog DeepCopy()
+        {
+            Blog clone = (Blog)this.MemberwiseClone();
+            clone.Title = String.Copy(Title);
+            return clone;
+        }
     }
 }
